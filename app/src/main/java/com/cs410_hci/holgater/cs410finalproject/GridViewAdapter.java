@@ -5,13 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 /**
  * Created by Richard on 7/16/2016.
@@ -28,7 +23,7 @@ public class GridViewAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return nameId.length;
+        return ImageId.length;
     }
 
     public Object getItem(int position) {
@@ -58,5 +53,4 @@ public class GridViewAdapter extends BaseAdapter {
 
         return gridView;
     }
-
 }

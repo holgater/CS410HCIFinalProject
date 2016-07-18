@@ -1,8 +1,8 @@
 package com.cs410_hci.holgater.cs410finalproject;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -40,7 +40,8 @@ public class ItemListMenu extends AppCompatActivity {
                 //TODO
                 //create intent to start ItemEditMenu activity
                 Intent intent = new Intent(ItemListMenu.this, ItemEditMenu.class);
-                intent.putExtra("item", nameId[position]);
+                intent.putExtra("name", nameId[position]);
+                intent.putExtra("imagePosition", position);
                 startActivity(intent);
             }
         });
