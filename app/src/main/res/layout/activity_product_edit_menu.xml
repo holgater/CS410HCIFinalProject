@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ProductEditMenu">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="#f0f0f0"
+                android:layout_gravity="center"
+                android:id="@+id/toolbar_title" />
+
+        </android.support.v7.widget.Toolbar>>
+
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageDisplay"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="79dp"
+            android:padding="10dp"
+            android:background="#000000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="In Stock"
+            android:layout_alignTop="@+id/imageDisplay"
+            android:layout_alignStart="@+id/itemInStockNumText"
+            android:id="@+id/textView" />
+
+        <TextView
+            android:id="@+id/itemInStockNumText"
+            android:layout_width="60pt"
+            android:layout_height="15pt"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="In Stock"
+            android:layout_gravity="end"
+            android:layout_marginEnd="29dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Potential Stock"
+            android:layout_above="@+id/itemPotentialStockNumText"
+            android:layout_alignLeft="@+id/itemInStockNumText" />
+
+        <TextView
+            android:id="@+id/itemPotentialStockNumText"
+            android:layout_width="75pt"
+            android:layout_height="15pt"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Potential"
+            android:layout_gravity="right"
+            android:layout_alignBottom="@+id/imageDisplay"
+            android:layout_alignStart="@+id/itemInStockNumText"
+            android:layout_marginBottom="25dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Process"
+            android:id="@+id/distributeButton"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageDisplay" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restock"
+            android:id="@+id/restockButton"
+            android:layout_below="@+id/distributeButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Description"
+            android:id="@+id/descriptionTitle"
+            android:layout_below="@+id/restockButton"
+            android:layout_alignParentStart="true" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:layout_below="@+id/descriptionTitle"
+            android:layout_alignParentStart="true"
+            android:id="@+id/frameLayout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Description..."
+                android:id="@+id/descriptionText"
+                android:layout_gravity="left|top" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Tags"
+            android:id="@+id/tagTitle"
+            android:layout_below="@+id/frameLayout"
+            android:layout_alignParentStart="true" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:layout_below="@+id/tagTitle"
+            android:layout_alignParentStart="true"
+            android:id="@+id/tagsLayout">
+
+        </GridLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Recipe"
+            android:id="@+id/recipeTitle"
+            android:layout_below="@+id/tagsLayout"
+            android:layout_alignParentStart="true" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/recipeTitle"
+            android:layout_alignParentStart="true">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView"
+                android:layout_gravity="left|top" >
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/recipeList"/>
+            </ScrollView>
+        </FrameLayout>
+
+    </RelativeLayout>
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

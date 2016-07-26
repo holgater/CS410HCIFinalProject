@@ -12,18 +12,18 @@ import android.widget.TextView;
  * Created by Richard on 7/16/2016.
  */
 public class GridViewAdapter extends BaseAdapter {
-    private Context mContext;
-    private final String[] nameId;
-    private final int[] ImageId;
+    //context
+    private Context context;
+    //array of products and materials that will be displayed
+    private final Item[] items;
 
-    public GridViewAdapter(Context c, String[] nameId, int[] imageId) {
-        this.mContext = c;
-        this.nameId = nameId;
-        this.ImageId = imageId;
+    public GridViewAdapter(Context c, Item[] items) {
+        this.context = c;
+        this.items = items;
     }
 
     public int getCount() {
-        return ImageId.length;
+        return items.length;
     }
 
     public Object getItem(int position) {
@@ -37,18 +37,20 @@ public class GridViewAdapter extends BaseAdapter {
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
         View gridView;
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
-            gridView = new View(mContext);
+            gridView = new View(context);
             gridView = inflater.inflate(R.layout.item_grid_single, null);
             TextView textView = (TextView) gridView.findViewById(R.id.gridText);
             ImageView imageView = (ImageView) gridView.findViewById(R.id.gridImage);
-            textView.setText(nameId[position]);
-            imageView.setImageResource(ImageId[position]);
+            textView.setText(items[position].getName());
+            imageView.setImageResource(items[position].getImage());
+
+
         } else {
-            gridView = (View) convertView;
+            gridView = convertView;
         }
 
         return gridView;
