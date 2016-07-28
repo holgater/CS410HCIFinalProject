@@ -17,8 +17,7 @@
         </activity>
         <activity
             android:name=".ProductEditMenu"
-            android:label="@string/title_activity_item_edit_menu"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_item_edit_menu" />
     </application>
 
 </manifest>

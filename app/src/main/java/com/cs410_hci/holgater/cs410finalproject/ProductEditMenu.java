@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -104,6 +105,34 @@ public class ProductEditMenu extends AppCompatActivity {
             //add the row to the table
             table.addView(row);
         }
+        //add "add component" row
+        //make add icon
+        ImageView plusIcon = new ImageView(this);
+        plusIcon.setImageResource(R.drawable.plus_button);
+        plusIcon.setId(plusIcon.generateViewId()); //
+        //make text
+        TextView addText = new TextView(this);
+        addText.setText("Add new component");
+        addText.setTextSize(20);
+        //make row
+        TableRow addRow = new TableRow(this);
+        addRow.setWeightSum(6f);
+        addRow.setGravity(Gravity.CENTER_VERTICAL);
+        //make the row clickable
+        addRow.setClickable(true);
+        addRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO
+            }
+
+        });
+        //add components to row
+        addRow.addView(plusIcon);
+        plusIcon.setLayoutParams(new TableRow.LayoutParams(200, 200, 1f));
+        addRow.addView(addText);
+        //add row to table
+        table.addView(addRow);
     }
 
 

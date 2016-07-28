@@ -31,10 +31,31 @@ public class ProductListMenu extends AppCompatActivity {
         "name2",
         "name3",
         "name4",
+        "name5",
+        "name1",
+        "name2",
+        "name3",
+        "name4",
+        "name5",
+        "name1",
+        "name2",
+        "name3",
+        "name4",
         "name5"
+
     };
 
     int[] pImageId = {
+        R.drawable.sample_1,
+        R.drawable.sample_2,
+        R.drawable.sample_3,
+        R.drawable.sample_4,
+        R.drawable.sample_5,
+        R.drawable.sample_1,
+        R.drawable.sample_2,
+        R.drawable.sample_3,
+        R.drawable.sample_4,
+        R.drawable.sample_5,
         R.drawable.sample_1,
         R.drawable.sample_2,
         R.drawable.sample_3,
@@ -43,6 +64,16 @@ public class ProductListMenu extends AppCompatActivity {
     };
 
     int[] pItemInStockNumId = {
+        12,
+        2,
+        6,
+        15,
+        4,
+        12,
+        2,
+        6,
+        15,
+        4,
         12,
         2,
         6,
@@ -64,18 +95,19 @@ public class ProductListMenu extends AppCompatActivity {
         loadMaterials();
         //test - hard code products
         ///*
-        products = new Product[5];
+        products = new Product[15];
 
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 0; i < 15; ++i) {
             products[i] = new Product(pNameId[i], pImageId[i], pItemInStockNumId[i]);
         }
         //*/
         //setup toolbar
-        GridView gridView = (GridView) findViewById(R.id.gridView);
-        gridView.setAdapter(new GridViewAdapter(this, products));
+        ExpandableGridView eGridView = (ExpandableGridView) findViewById(R.id.eGridView);
+        eGridView.setAdapter(new GridViewAdapter(this, products));
+        eGridView.setExpanded(true);
 
         //setup grid items with onClick listener
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        eGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 //TODO
