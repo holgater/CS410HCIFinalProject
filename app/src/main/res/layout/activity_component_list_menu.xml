@@ -39,10 +39,10 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/compButton"
+                    android:id="@+id/productsButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Components"
+                    android:text="Products"
                     android:layout_centerVertical="true"
                     android:layout_alignParentStart="true" />
 

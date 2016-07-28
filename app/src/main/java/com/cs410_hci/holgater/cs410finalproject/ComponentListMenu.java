@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class ProductListMenu extends AppCompatActivity {
+public class ComponentListMenu extends AppCompatActivity {
     //gridView
     GridView gridView;
     //input stream for loading products and materials
@@ -23,65 +23,65 @@ public class ProductListMenu extends AppCompatActivity {
     ObjectOutputStream out = null;
     //array of products and materials user has created
     Product[] products;
-    Component[] materials;
+    Component[] components;
 
     //test - hard code products
     ///*
     String[] pNameId = {
-        "name1",
-        "name2",
-        "name3",
-        "name4",
-        "name5",
-        "name1",
-        "name2",
-        "name3",
-        "name4",
-        "name5",
-        "name1",
-        "name2",
-        "name3",
-        "name4",
-        "name5"
+            "name1",
+            "name2",
+            "name3",
+            "name4",
+            "name5",
+            "name1",
+            "name2",
+            "name3",
+            "name4",
+            "name5",
+            "name1",
+            "name2",
+            "name3",
+            "name4",
+            "name5"
 
     };
 
     int[] pImageId = {
-        R.drawable.sample_1,
-        R.drawable.sample_2,
-        R.drawable.sample_3,
-        R.drawable.sample_4,
-        R.drawable.sample_5,
-        R.drawable.sample_1,
-        R.drawable.sample_2,
-        R.drawable.sample_3,
-        R.drawable.sample_4,
-        R.drawable.sample_5,
-        R.drawable.sample_1,
-        R.drawable.sample_2,
-        R.drawable.sample_3,
-        R.drawable.sample_4,
-        R.drawable.sample_5
+            R.drawable.sample_1,
+            R.drawable.sample_2,
+            R.drawable.sample_3,
+            R.drawable.sample_4,
+            R.drawable.sample_5,
+            R.drawable.sample_1,
+            R.drawable.sample_2,
+            R.drawable.sample_3,
+            R.drawable.sample_4,
+            R.drawable.sample_5,
+            R.drawable.sample_1,
+            R.drawable.sample_2,
+            R.drawable.sample_3,
+            R.drawable.sample_4,
+            R.drawable.sample_5
     };
 
     int[] pItemInStockNumId = {
-        12,
-        2,
-        6,
-        15,
-        4,
-        12,
-        2,
-        6,
-        15,
-        4,
-        12,
-        2,
-        6,
-        15,
-        4
+            12,
+            2,
+            6,
+            15,
+            4,
+            12,
+            2,
+            6,
+            15,
+            4,
+            12,
+            2,
+            6,
+            15,
+            4
     };
-     //*/
+    //*/
 
 
     @Override
@@ -89,40 +89,41 @@ public class ProductListMenu extends AppCompatActivity {
         //AppCompatActivity setup
         super.onCreate(savedInstanceState);
         //setup layout
-        setContentView(R.layout.activity_product_list_menu);
+        setContentView(R.layout.activity_component_list_menu);
         //load Products
         loadProducts();
         //load materials
-        loadMaterials();
+        loadComponents();
         //test - hard code products
         ///*
-        products = new Product[15];
+        components = new Component[15];
 
         for (int i = 0; i < 15; ++i) {
-            products[i] = new Product(pNameId[i], pImageId[i], pItemInStockNumId[i]);
+            components[i] = new Component(pNameId[i], pImageId[i], pItemInStockNumId[i]);
         }
         //*/
         //setup toolbar
         ExpandableGridView eGridView = (ExpandableGridView) findViewById(R.id.eGridView);
-        eGridView.setAdapter(new GridViewAdapter(this, products));
+        eGridView.setAdapter(new GridViewAdapter(this, components));
         eGridView.setExpanded(true);
 
         //setup grid items with onClick listener
         eGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                //TODO
                 //create intent to start ProductEditMenu activity
-                Intent intent = new Intent(ProductListMenu.this, ProductEditMenu.class);
-                intent.putExtra("product", products[position]);
+                Intent intent = new Intent(ComponentListMenu.this, ComponentEditMenu.class);
+                intent.putExtra("component", components[position]);
                 startActivity(intent);
             }
         });
 
-        //setup "components" button in toolbar
-        Button componentsButton = (Button) findViewById(R.id.compButton);
-        componentsButton.setOnClickListener(new View.OnClickListener() {
+        //setup "products" button in toolbar
+        Button productsButton = (Button) findViewById(R.id.productsButton);
+        productsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ProductListMenu.this, ComponentListMenu.class);
+                Intent intent = new Intent(ComponentListMenu.this, ProductListMenu.class);
                 startActivity(intent);
             }
         });
@@ -133,7 +134,7 @@ public class ProductListMenu extends AppCompatActivity {
         super.onDestroy();
         //save products and materials for next time
         saveProducts();
-        saveMaterials();
+        saveComponents();
     }
 
     //load products from serialized file
@@ -152,13 +153,13 @@ public class ProductListMenu extends AppCompatActivity {
     }
 
     //load materials from serialize file
-    protected void loadMaterials() {
+    protected void loadComponents() {
         //material serialized file
         String filename = "materials.srl";
         //try to get objectInputStream, then load materials
         try {
             input = new ObjectInputStream(new FileInputStream(filename));
-            materials = (Component[]) input.readObject();
+            components = (Component[]) input.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -181,13 +182,13 @@ public class ProductListMenu extends AppCompatActivity {
     }
 
     //save materials to serialized file
-    protected void saveMaterials() {
+    protected void saveComponents() {
         //material serialized file
         String filename = "materials.srl";
         //try to get the objectOutputStream, then save materials
         try {
             out = new ObjectOutputStream(new FileOutputStream(filename));
-            out.writeObject(materials);
+            out.writeObject(components);
             out.close();
         } catch (IOException e) {
             e.printStackTrace();

@@ -12,12 +12,7 @@ public class Product extends Item implements Serializable {
     //constructor
     public Product(String nameIn, int imageIn, int inStockNumIn) {
         //initiate name, image as an Item
-        super(nameIn, imageIn);
-        inStockNum = inStockNumIn;
-    }
-
-    public int getInStockNum() {
-        return inStockNum;
+        super(nameIn, imageIn, inStockNumIn);
     }
 
 }

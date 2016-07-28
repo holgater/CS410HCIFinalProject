@@ -76,11 +76,11 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Potential Stock"
-            android:layout_above="@+id/itemPotentialStockNumText"
+            android:layout_above="@+id/compUnit"
             android:layout_alignLeft="@+id/itemInStockNumText" />
 
         <TextView
-            android:id="@+id/itemPotentialStockNumText"
+            android:id="@+id/compUnit"
             android:layout_width="75pt"
             android:layout_height="15pt"
             android:textAppearance="?android:attr/textAppearanceLarge"

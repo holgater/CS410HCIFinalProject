@@ -18,6 +18,8 @@
         <activity
             android:name=".ProductEditMenu"
             android:label="@string/title_activity_item_edit_menu" />
+        <activity android:name=".ComponentListMenu" />
+        <activity android:name=".ComponentEditMenu"></activity>
     </application>
 
 </manifest>
