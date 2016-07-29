@@ -108,7 +108,7 @@ public class ProductEditMenu extends AppCompatActivity {
         //add "add component" row
         //make add icon
         ImageView plusIcon = new ImageView(this);
-        plusIcon.setImageResource(R.drawable.plus_button);
+        //plusIcon.setImageResource(R.drawable.plus_button);
         plusIcon.setId(plusIcon.generateViewId()); //
         //make text
         TextView addText = new TextView(this);
