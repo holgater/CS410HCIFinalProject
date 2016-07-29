@@ -124,6 +124,7 @@ public class ProductListMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ProductListMenu.this, ComponentListMenu.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -144,9 +145,7 @@ public class ProductListMenu extends AppCompatActivity {
         try {
             input = new ObjectInputStream(new FileInputStream(filename));
             products = (Product[]) input.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -159,9 +158,7 @@ public class ProductListMenu extends AppCompatActivity {
         try {
             input = new ObjectInputStream(new FileInputStream(filename));
             materials = (Component[]) input.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
