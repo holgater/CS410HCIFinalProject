@@ -125,6 +125,7 @@ public class ComponentListMenu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ComponentListMenu.this, ProductListMenu.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
