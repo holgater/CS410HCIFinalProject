@@ -31,13 +31,14 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/fill_in_form_to_add_new_product"
                     android:id="@+id/textView2"
+                    android:layout_span="1"
                     android:layout_marginTop="40dp" />
             </TableRow>
             <TableRow android:layout_marginTop="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_span="3"
+                    android:layout_span="1"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/add_a_picture_of_product"
                     android:id="@+id/textView3"
@@ -70,7 +71,9 @@
                     android:layout_marginLeft="10dp" />
                 </RadioGroup>
                 <ImageView android:id="@+id/ImageView"
-                    android:layout_column="1" />
+                    android:layout_column="1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
             </TableRow>
             <TableRow>
                 <TextView
@@ -82,12 +85,17 @@
                     android:layout_marginTop="40dp" />
             </TableRow>
             <TableRow>
+                <ScrollView
+                    android:id="@+id/ScrollView01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp">
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:width="@dimen/activity_horizontal_margin"
                     android:height="200dp"
                     android:id="@+id/editText" />
+                </ScrollView>
             </TableRow>
         </TableLayout>
 </RelativeLayout>
