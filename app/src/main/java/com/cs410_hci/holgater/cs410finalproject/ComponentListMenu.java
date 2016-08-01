@@ -116,6 +116,7 @@ public class ComponentListMenu extends AppCompatActivity {
                 Intent intent = new Intent(ComponentListMenu.this, ComponentEditMenu.class);
                 intent.putExtra("component", components[position]);
                 startActivity(intent);
+                finish();
             }
         });
 
