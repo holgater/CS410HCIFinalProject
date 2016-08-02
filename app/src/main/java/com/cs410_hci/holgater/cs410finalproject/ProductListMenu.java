@@ -115,12 +115,12 @@ public class ProductListMenu extends AppCompatActivity {
         //load materials
         loadMaterials();
         //test - hard code products
-        ///*;
+        /*;
 
         for (int i = 0; i < 15; ++i) {
             products.add(new Product(pNameId[i], pImageId[i], pItemInStockNumId[i], pDescription[i]));
         }
-        //*/
+        */
         //setup toolbar
         ExpandableGridView eGridView = (ExpandableGridView) findViewById(R.id.eGridView);
         eGridView.setAdapter(new GridViewAdapter(this, products));
