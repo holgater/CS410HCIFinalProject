@@ -68,6 +68,11 @@ public class ProductEditMenu extends AppCompatActivity {
         //set the image
         final ImageView imageView = (ImageView) findViewById(R.id.imageDisplay);
         imageView.setImageResource(product.getImage());
+        //set the description
+        final TextView description = (TextView) findViewById(R.id.descriptionText);
+        description.setText(product.getDescription());
+
+
         //set the recipe layout and resources
         TableLayout table = (TableLayout) findViewById(R.id.recipeList);
         //loop through and add each component

@@ -11,12 +11,14 @@ public class Item implements Serializable{
     private String name;
     private int image;
     private int inStockNum;
+    private String description;
 
     //constructor
-    public Item(String nameIn, int imageIn, int inStockNum) {
+    public Item(String nameIn, int imageIn, int inStockNum, String descriptionIn) {
         this.name = nameIn;
         this.image = imageIn;
         this.inStockNum = inStockNum;
+        this.description = descriptionIn;
     }
 
     public String getName() {
@@ -29,6 +31,10 @@ public class Item implements Serializable{
 
     public int getInStockNum() {
         return inStockNum;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
 }

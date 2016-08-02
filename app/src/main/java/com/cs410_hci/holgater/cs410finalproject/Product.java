@@ -10,9 +10,9 @@ public class Product extends Item implements Serializable {
     private int inStockNum = 0;
 
     //constructor
-    public Product(String nameIn, int imageIn, int inStockNumIn) {
+    public Product(String nameIn, int imageIn, int inStockNumIn, String descriptionIn) {
         //initiate name, image as an Item
-        super(nameIn, imageIn, inStockNumIn);
+        super(nameIn, imageIn, inStockNumIn, descriptionIn);
     }
 
 }

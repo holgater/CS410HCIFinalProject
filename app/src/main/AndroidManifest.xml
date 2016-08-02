@@ -23,7 +23,7 @@
         <activity android:name=".ComponentEditMenu" />
         <activity
             android:name=".AddProduct"
-            android:label="@string/title_activity_add_product"
+            android:label=""
             android:theme="@style/AppTheme"/>
     </application>
 

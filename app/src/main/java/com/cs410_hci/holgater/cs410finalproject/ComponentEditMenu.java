@@ -45,7 +45,7 @@ public class ComponentEditMenu extends AppCompatActivity {
         //AppCompatActivity setup
         super.onCreate(savedInstanceState);
         //setup view
-        setContentView(R.layout.activity_product_edit_menu);
+        setContentView(R.layout.activity_component_edit_menu);
         //setup toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,7 +63,6 @@ public class ComponentEditMenu extends AppCompatActivity {
         //set the image
         final ImageView imageView = (ImageView) findViewById(R.id.imageDisplay);
         imageView.setImageResource(component.getImage());
-
     }
 
 }

@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by Richard on 7/16/2016.
  */
@@ -15,15 +17,15 @@ public class GridViewAdapter extends BaseAdapter {
     //context
     private Context context;
     //array of products and materials that will be displayed
-    private final Item[] items;
+    private final List<? extends Item> items;
 
-    public GridViewAdapter(Context c, Item[] items) {
+    public GridViewAdapter(Context c, List<? extends Item> items) {
         this.context = c;
         this.items = items;
     }
 
     public int getCount() {
-        return items.length;
+        return items.size();
     }
 
     public Object getItem(int position) {
@@ -45,8 +47,8 @@ public class GridViewAdapter extends BaseAdapter {
             gridView = inflater.inflate(R.layout.item_grid_single, null);
             TextView textView = (TextView) gridView.findViewById(R.id.gridText);
             ImageView imageView = (ImageView) gridView.findViewById(R.id.gridImage);
-            textView.setText(items[position].getName());
-            imageView.setImageResource(items[position].getImage());
+            textView.setText(items.get(position).getName());
+            imageView.setImageResource(items.get(position).getImage());
 
 
         } else {

@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 
 public class ComponentListMenu extends AppCompatActivity {
     //gridView
@@ -22,64 +23,83 @@ public class ComponentListMenu extends AppCompatActivity {
     //output stream for saving products and materials
     ObjectOutputStream out = null;
     //array of products and materials user has created
-    Product[] products;
-    Component[] components;
+    List<Product> products;
+    List<Component> components;
 
     //test - hard code products
     ///*
-    String[] pNameId = {
-            "name1",
-            "name2",
-            "name3",
-            "name4",
-            "name5",
-            "name1",
-            "name2",
-            "name3",
-            "name4",
-            "name5",
-            "name1",
-            "name2",
-            "name3",
-            "name4",
-            "name5"
+    String[] cNameId = {
+            "Black Lace",
+            "White Lace",
+            "Purple Lace",
+            "Red Lace",
+            "Blue Fabric",
+            "Red Fabric",
+            "Plaid Fabric",
+            "White Elastic",
+            "Green Elastic",
+            "Red Button",
+            "Blue Button",
+            "Yellow Button",
+            "Green Button",
+            "Patterned Fabric 1",
+            "Patterned Fabric 2"
 
     };
 
-    int[] pImageId = {
-            R.drawable.sample_1,
-            R.drawable.sample_2,
-            R.drawable.sample_3,
-            R.drawable.sample_4,
-            R.drawable.sample_5,
-            R.drawable.sample_1,
-            R.drawable.sample_2,
-            R.drawable.sample_3,
-            R.drawable.sample_4,
-            R.drawable.sample_5,
-            R.drawable.sample_1,
-            R.drawable.sample_2,
-            R.drawable.sample_3,
-            R.drawable.sample_4,
-            R.drawable.sample_5
+    int[] cImageId = {
+            R.drawable.component01,
+            R.drawable.component02,
+            R.drawable.component03,
+            R.drawable.component04,
+            R.drawable.component05,
+            R.drawable.component06,
+            R.drawable.component07,
+            R.drawable.component08,
+            R.drawable.component09,
+            R.drawable.component10,
+            R.drawable.component11,
+            R.drawable.component12,
+            R.drawable.component13,
+            R.drawable.component14,
+            R.drawable.component15
     };
 
-    int[] pItemInStockNumId = {
+    int[] cItemInStockNumId = {
             12,
             2,
             6,
             15,
             4,
-            12,
+            1,
+            0,
+            13,
+            19,
             2,
-            6,
-            15,
-            4,
-            12,
-            2,
-            6,
-            15,
+            1,
+            0,
+            25,
+            21,
             4
+    };
+
+    String[] cDescription = {
+            "Some black lace - coolio",
+            "Some white lace - coolio",
+            "Some purple lace - coolio",
+            "Some red lace - coolio",
+            "Some blue fabric - coolio",
+            "Some red fabric - coolio",
+            "Some plaid fabric - coolio",
+            "Some white elastic - coolio",
+            "Some green elastic - coolio",
+            "A red button - coolio",
+            "A blue button - coolio",
+            "A yellow button - coolio",
+            "A green button - coolio",
+            "Some patterned fabric - coolio",
+            "Some patterned fabric - coolio"
+
     };
     //*/
 
@@ -96,10 +116,9 @@ public class ComponentListMenu extends AppCompatActivity {
         loadComponents();
         //test - hard code products
         ///*
-        components = new Component[15];
 
         for (int i = 0; i < 15; ++i) {
-            components[i] = new Component(pNameId[i], pImageId[i], pItemInStockNumId[i]);
+            components.add(new Component(cNameId[i], cImageId[i], cItemInStockNumId[i], cDescription[i]));
         }
         //*/
         //setup toolbar
@@ -111,12 +130,10 @@ public class ComponentListMenu extends AppCompatActivity {
         eGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                //TODO
-                //create intent to start ProductEditMenu activity
+                //create intent to start ComponentEditMenu activity
                 Intent intent = new Intent(ComponentListMenu.this, ComponentEditMenu.class);
-                intent.putExtra("component", components[position]);
+                intent.putExtra("component", components.get(position));
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -146,7 +163,7 @@ public class ComponentListMenu extends AppCompatActivity {
         //try to get objectInputStream, then load products
         try {
             input = new ObjectInputStream(new FileInputStream(filename));
-            products = (Product[]) input.readObject();
+            products = (List<Product>) input.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -157,11 +174,11 @@ public class ComponentListMenu extends AppCompatActivity {
     //load materials from serialize file
     protected void loadComponents() {
         //material serialized file
-        String filename = "materials.srl";
+        String filename = "components.srl";
         //try to get objectInputStream, then load materials
         try {
             input = new ObjectInputStream(new FileInputStream(filename));
-            components = (Component[]) input.readObject();
+            components = (List<Component>) input.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
