@@ -3,11 +3,13 @@ package com.cs410_hci.holgater.cs410finalproject;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -15,15 +17,15 @@ import android.widget.RadioButton;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class AddProduct extends AppCompatActivity {
+public class AddComponent extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product);
+        setContentView(R.layout.activity_add_component);
 
         //Use camera to get thumbnail
-        RadioButton productsButton = (RadioButton) findViewById(R.id.Camera);
+        RadioButton productsButton = (RadioButton) findViewById(R.id.Camera_Com);
         productsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -32,7 +34,7 @@ public class AddProduct extends AppCompatActivity {
         });
 
         //Use gallery to create thumbnail
-        RadioButton galeryButton = (RadioButton) findViewById(R.id.Gallery);
+        RadioButton galeryButton = (RadioButton) findViewById(R.id.Gallery_Com);
         galeryButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK,
@@ -42,10 +44,10 @@ public class AddProduct extends AppCompatActivity {
         });
 
         //Use gallery to create thumbnail
-        RadioButton cloudButton = (RadioButton) findViewById(R.id.Cloud);
+        RadioButton cloudButton = (RadioButton) findViewById(R.id.Cloud_Com);
         cloudButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(AddProduct.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddComponent.this);
                 builder.setTitle("Sorry! This button not available now!")
                         .setMessage("Wait for update before it will be available!")
                         .setCancelable(true)
@@ -61,7 +63,7 @@ public class AddProduct extends AppCompatActivity {
         });
     }
 
-    public void createProduct(View view) {
+    public void createComponect(View view) {
         finish();
     }
 
