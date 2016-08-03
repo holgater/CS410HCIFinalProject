@@ -21,83 +21,93 @@
         android:layout_alignParentEnd="true" />
 
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/scrollView"
-    android:layout_below="@+id/textView2"
-    android:layout_alignParentStart="true">
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/RL">
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/add_a_picture_of_the_product"
-            android:id="@+id/textView3"
-            android:layout_alignParentStart="true" />
+            android:orientation="vertical"
+            android:id="@+id/RL">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/add_a_picture_of_the_component"
+                android:id="@+id/textView3"
+                android:layout_alignParentStart="true" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/radioGroup"
                 android:layout_below="@+id/textView3"
+                android:layout_marginTop="30dp"
                 android:layout_alignParentStart="true">
                 <RadioButton
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/gallery"
+                    android:textSize="24sp"
                     android:id="@+id/Gallery" />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/camera"
                     android:id="@+id/Camera"
-                    android:layout_marginLeft="10dp" />
+                    android:textSize="24sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp" />
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cloud"
                     android:id="@+id/Cloud"
-                    android:layout_marginLeft="10dp" />
+                    android:textSize="24sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp" />
             </RadioGroup>
             <ImageView android:id="@+id/ImageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="120dp"
+                android:layout_height="140dp"
                 android:background="#000000"
-                android:layout_below="@+id/textView3"
-                android:layout_toEndOf="@+id/textViewDesc" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/description"
-            android:id="@+id/textViewDesc"
-            android:layout_below="@+id/radioGroup"
-            android:layout_alignParentStart="true" />
+                android:layout_alignBottom="@+id/radioGroup"
+                android:layout_alignEnd="@+id/textView3" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/description"
+                android:id="@+id/textViewDesc"
+                android:layout_below="@+id/radioGroup"
+                android:layout_alignParentStart="true" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:width="@dimen/activity_horizontal_margin"
-            android:id="@+id/editText"
-            android:layout_below="@+id/textViewDesc"
-            android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:width="@dimen/activity_horizontal_margin"
+                android:id="@+id/editText"
+                android:layout_below="@+id/textViewDesc"
+                android:layout_alignParentStart="true"
+                android:inputType="textAutoCorrect" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/create"
-            android:id="@+id/button_Create_Pro"
-            android:layout_below="@+id/editText" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/create"
+                android:id="@+id/button_Create_Com"
+                android:layout_below="@+id/editText" />
 
-    </RelativeLayout>
-</ScrollView>
+        </RelativeLayout>
+    </ScrollView>
 
 
 

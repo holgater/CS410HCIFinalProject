@@ -18,7 +18,6 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class ComponentListMenu extends AppCompatActivity {
-    //gridView
     DataBase dataBase;
 
     @Override
