@@ -23,6 +23,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
+import static java.util.Arrays.asList;
+
 public class ProductListMenu extends AppCompatActivity {
 
     @Override
@@ -36,8 +38,8 @@ public class ProductListMenu extends AppCompatActivity {
         //load materials
         DataBase.loadComponents();
 
-        for (int i = 0; i < 15; ++i) {
-            DataBase.products.add(new Product(Test.pNameId[i], BitmapFactory.decodeResource(getResources(), Test.pImageId[i]), Test.pItemInStockNumId[i], Test.pDescription[i]));
+        for (int i = 0; i < 14; ++i) {
+            DataBase.products.add(new Product(Test.pNameId[i], BitmapFactory.decodeResource(getResources(), Test.pImageId[i]), Test.pItemInStockNumId[i], Test.pDescription[i], Test.pRecipe[i]));
         }
 
         //setup toolbar

@@ -56,7 +56,7 @@ public class ProductEditMenu extends AppCompatActivity {
             //define the icon, name, and amount of each component
             //icon
             ImageView icon = new ImageView(this);
-            icon.setImageResource(currItem.getImage());
+            icon.setImageBitmap(currItem.getImage());
             //name
             TextView name = new TextView(this);
             name.setText(currItem.getName());

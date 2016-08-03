@@ -71,7 +71,7 @@ public class AddProduct extends AppCompatActivity {
         final EditText name = (EditText) findViewById(R.id.productNameInput);
         create.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DataBase.products.add(new Product(name.getText().toString(),((BitmapDrawable)imageView.getDrawable()).getBitmap(),0, desc.getText().toString()));
+                DataBase.products.add(new Product(name.getText().toString(),((BitmapDrawable)imageView.getDrawable()).getBitmap(),0, desc.getText().toString(), null));
                 /*ExpandableGridView eGridView = (ExpandableGridView) findViewById(R.id.eGridView);
                 eGridView.setAdapter(new GridViewAdapter(, DataBase.products));
                 eGridView.setExpanded(true);*/
