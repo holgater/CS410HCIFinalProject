@@ -7,15 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.List;
 
 public class ProductListMenu extends AppCompatActivity {
     //gridView
@@ -33,8 +24,8 @@ public class ProductListMenu extends AppCompatActivity {
         //load materials
         dataBase.loadComponents();
 
-        for (int i = 0; i < 15; ++i) {
-            dataBase.products.add(new Product(Test.pNameId[i], Test.pImageId[i], Test.pItemInStockNumId[i], Test.pDescription[i]));
+        for (int i = 0; i < 14; ++i) {
+            dataBase.products.add(new Product(Test.pNameId[i], Test.pImageId[i], Test.pItemInStockNumId[i], Test.pDescription[i], Test.pRecipe[i]));
         }
 
         //setup toolbar
