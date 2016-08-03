@@ -1,5 +1,7 @@
 package com.cs410_hci.holgater.cs410finalproject;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /**
@@ -8,7 +10,7 @@ import java.io.Serializable;
 public class Component extends Item implements Serializable{
 
     //constructor
-    public Component(String nameIn, int imageIn, int inStockNumIn, String descriptionIn) {
+    public Component(String nameIn, Bitmap imageIn, int inStockNumIn, String descriptionIn) {
         //initiate name, image as an Item
         super(nameIn, imageIn, inStockNumIn, descriptionIn);
     }

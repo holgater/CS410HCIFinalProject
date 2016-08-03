@@ -18,4 +18,5 @@
     <string name="add_a_picture_of_the_product">Add a picture of the product</string>
     <string name="add_a_picture_of_the_component">Add a picture of the component</string>
     <string name="fill_in_form_to_add_new_component">Fill in form to add new component</string>
+    <string name="enter_product_name">Enter product name:</string>
 </resources>

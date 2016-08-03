@@ -1,5 +1,9 @@
 package com.cs410_hci.holgater.cs410finalproject;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
+
 /**
  * Created by mtsvietukhin on 8/2/2016.
  */
@@ -26,6 +30,8 @@ public class Test {
     };
 
     static int[] cImageId = {
+
+            R.drawable.component01,
             R.drawable.component01,
             R.drawable.component02,
             R.drawable.component03,

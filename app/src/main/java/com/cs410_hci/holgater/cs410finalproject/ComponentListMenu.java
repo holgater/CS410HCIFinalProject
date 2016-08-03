@@ -1,24 +1,15 @@
 package com.cs410_hci.holgater.cs410finalproject;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.List;
 
 public class ComponentListMenu extends AppCompatActivity {
-    DataBase dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,22 +18,20 @@ public class ComponentListMenu extends AppCompatActivity {
         //setup layout
         setContentView(R.layout.activity_component_list_menu);
 
-        dataBase = new DataBase();
-
         //load Products
-        dataBase.loadProducts();
+        DataBase.loadProducts();
         //load materials
-        dataBase.loadComponents();
+        DataBase.loadComponents();
         //test - hard code products
 
 
         for (int i = 0; i < 15; ++i) {
-            dataBase.components.add(new Component(Test.cNameId[i], Test.cImageId[i], Test.cItemInStockNumId[i], Test.cDescription[i]));
+            DataBase.components.add(new Component(Test.cNameId[i], BitmapFactory.decodeResource(getResources(), Test.cImageId[i]), Test.cItemInStockNumId[i], Test.cDescription[i]));
         }
 
         //setup toolbar
         ExpandableGridView eGridView = (ExpandableGridView) findViewById(R.id.eGridView);
-        eGridView.setAdapter(new GridViewAdapter(this, dataBase.components));
+        eGridView.setAdapter(new GridViewAdapter(this, DataBase.components));
         eGridView.setExpanded(true);
 
         //setup grid items with onClick listener
@@ -51,7 +40,7 @@ public class ComponentListMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 //create intent to start ComponentEditMenu activity
                 Intent intent = new Intent(ComponentListMenu.this, ComponentEditMenu.class);
-                intent.putExtra("component", dataBase.components.get(position));
+                intent.putExtra("component", DataBase.components.get(position));
                 startActivity(intent);
             }
         });
@@ -79,7 +68,7 @@ public class ComponentListMenu extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         //save products and materials for next time
-        dataBase.saveProducts();
-        dataBase.saveComponents();
+        DataBase.saveProducts();
+        DataBase.saveComponents();
     }
 }

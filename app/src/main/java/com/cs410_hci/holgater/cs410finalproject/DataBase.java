@@ -14,16 +14,16 @@ import java.util.List;
  */
 public class DataBase {
     //input stream for loading products and materials
-     ObjectInputStream input;
+    static ObjectInputStream input;
     //output stream for saving products and materials
-     ObjectOutputStream out = null;
+    static ObjectOutputStream out = null;
 
     //array of products and materials user has created
-    public  List<Product> products = new LinkedList<>();
-    public  List<Component> components = new LinkedList<>();
+    public static List<Product> products = new LinkedList<>();
+    public static List<Component> components = new LinkedList<>();
 
     //load products from serialized file
-    public  void loadProducts() {
+    public static void loadProducts() {
         //product serialized file
         String filename = "products.srl";
         File prodDBFile = new File(filename);
@@ -46,7 +46,7 @@ public class DataBase {
     }
 
     //load materials from serialize file
-    public  void loadComponents() {
+    public static void loadComponents() {
         //material serialized file
         String filename = "components.srl";
         File compDBFile = new File(filename);
@@ -67,7 +67,7 @@ public class DataBase {
     }
 
     //save products to serialized file
-    public  void saveProducts() {
+    public static void saveProducts() {
         //product serialized file
         String filename = "products.srl";
         //try to get the objectOutputSteam, then save products
@@ -90,7 +90,7 @@ public class DataBase {
     }
 
     //save materials to serialized file
-    public  void saveComponents() {
+    public static void saveComponents() {
         //material serialized file
         String filename = "materials.srl";
 
