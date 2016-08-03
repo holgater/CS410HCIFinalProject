@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -68,21 +67,20 @@ public class ProductEditMenu extends AppCompatActivity {
             amount.setTextSize(20);
             //make a row
             TableRow row = new TableRow(this);
-            //set row's total weight, center items vertically, and add margin
-            row.setWeightSum(6f);
-            row.setGravity(Gravity.CENTER_VERTICAL);
+            //center items vertically
+            row.setGravity(Gravity.FILL_HORIZONTAL);
             //add icon
             row.addView(icon);
             //edit icon size
-            icon.setLayoutParams(new TableRow.LayoutParams(200, 200, 1f));
+            icon.setLayoutParams(new TableRow.LayoutParams(200, 200));
             //add name
             row.addView(name);
             //edit name size
-            name.setLayoutParams(new TableRow.LayoutParams(200, ViewGroup.LayoutParams.WRAP_CONTENT, 6f));
+            name.setLayoutParams(new TableRow.LayoutParams(400, 200));
             //add quantity
             row.addView(amount);
             //edit quantity size
-            amount.setLayoutParams(new TableRow.LayoutParams(200, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+           // amount.setLayoutParams(new TableRow.LayoutParams(200, 200));
             //add the row to the table
             table.addView(row);
         }
