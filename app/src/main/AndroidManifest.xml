@@ -26,7 +26,11 @@
             android:name=".AddProduct"
             android:label=""
             android:theme="@style/AppTheme" />
-        <activity android:name=".AddComponent"></activity>
+        <activity android:name=".AddComponent" />
+        <activity
+            android:name=".RecipeItemSelect"
+            android:label="@string/title_activity_recipe_item_select"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

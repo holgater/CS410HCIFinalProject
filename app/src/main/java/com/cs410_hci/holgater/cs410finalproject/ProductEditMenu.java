@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -16,31 +15,6 @@ public class ProductEditMenu extends AppCompatActivity {
 
     String itemName;
     int imagePosition = 0;
-    ///*test - hard coded products
-    String[] pNameId = {
-            "name1",
-            "name2",
-            "name3",
-            "name4",
-            "name5"
-    };
-
-    int[] pImageId = {
-            R.drawable.sample_1,
-            R.drawable.sample_2,
-            R.drawable.sample_3,
-            R.drawable.sample_4,
-            R.drawable.sample_5
-    };
-
-    int[] pInStockNum = {
-            12,
-            2,
-            6,
-            15,
-            4
-    };
-    //*/
 
     //the product
     Product product;
@@ -75,46 +49,42 @@ public class ProductEditMenu extends AppCompatActivity {
 
         //set the recipe layout and resources
         TableLayout table = (TableLayout) findViewById(R.id.recipeList);
-        //loop through and add each component
-        //TODO - right now it just adds all products as a test
-        for (int i = 0; i < pNameId.length; ++i) {
+        //loop through and add each part of the recipe
+        for (int i = 0; i < product.getRecipe().size(); ++i) {
+            //get the recipe item we're adding
+            Item currItem = product.getRecipe().get(i);
             //define the icon, name, and amount of each component
             //icon
             ImageView icon = new ImageView(this);
-            icon.setImageResource(pImageId[i]);
+            icon.setImageResource(currItem.getImage());
             //name
             TextView name = new TextView(this);
-            name.setText(pNameId[i]);
+            name.setText(currItem.getName());
             name.setTextSize(20);
             //amount
             TextView amount = new TextView(this);
-            amount.setText(String.valueOf(pInStockNum[i]));
+            amount.setText(String.valueOf(currItem.getInStockNum()));
             amount.setTextSize(20);
             //make a row
             TableRow row = new TableRow(this);
-            //set row's total weight, center items vertically, and add margin
-            row.setWeightSum(6f);
-            row.setGravity(Gravity.CENTER_VERTICAL);
+            //center items vertically
+            row.setGravity(Gravity.FILL_HORIZONTAL);
             //add icon
             row.addView(icon);
             //edit icon size
-            icon.setLayoutParams(new TableRow.LayoutParams(200, 200, 1f));
+            icon.setLayoutParams(new TableRow.LayoutParams(200, 200));
             //add name
             row.addView(name);
             //edit name size
-            name.setLayoutParams(new TableRow.LayoutParams(200, ViewGroup.LayoutParams.WRAP_CONTENT, 6f));
+            name.setLayoutParams(new TableRow.LayoutParams(400, 200));
             //add quantity
             row.addView(amount);
             //edit quantity size
-            amount.setLayoutParams(new TableRow.LayoutParams(200, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+           // amount.setLayoutParams(new TableRow.LayoutParams(200, 200));
             //add the row to the table
             table.addView(row);
         }
         //add "add component" row
-        //make add icon
-        ImageView plusIcon = new ImageView(this);
-        //plusIcon.setImageResource(R.drawable.plus_button);
-        plusIcon.setId(plusIcon.generateViewId()); //
         //make text
         TextView addText = new TextView(this);
         addText.setText("Add new component");
@@ -128,13 +98,12 @@ public class ProductEditMenu extends AppCompatActivity {
         addRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
+                Intent intent = new Intent(ProductEditMenu.this, RecipeItemSelect.class);
+                startActivity(intent);
             }
 
         });
         //add components to row
-        addRow.addView(plusIcon);
-        plusIcon.setLayoutParams(new TableRow.LayoutParams(200, 200, 1f));
         addRow.addView(addText);
         //add row to table
         table.addView(addRow);
