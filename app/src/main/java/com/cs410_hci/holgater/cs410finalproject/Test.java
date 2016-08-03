@@ -84,6 +84,24 @@ public class Test {
 
     };
 
+    static Component[] cComponents = {
+            new Component(cNameId[0], cImageId[0], cItemInStockNumId[0], cDescription[0]),
+            new Component(cNameId[1], cImageId[1], cItemInStockNumId[1], cDescription[1]),
+            new Component(cNameId[2], cImageId[2], cItemInStockNumId[2], cDescription[2]),
+            new Component(cNameId[3], cImageId[3], cItemInStockNumId[3], cDescription[3]),
+            new Component(cNameId[4], cImageId[4], cItemInStockNumId[4], cDescription[4]),
+            new Component(cNameId[5], cImageId[5], cItemInStockNumId[5], cDescription[5]),
+            new Component(cNameId[6], cImageId[6], cItemInStockNumId[6], cDescription[6]),
+            new Component(cNameId[7], cImageId[7], cItemInStockNumId[7], cDescription[7]),
+            new Component(cNameId[8], cImageId[8], cItemInStockNumId[8], cDescription[8]),
+            new Component(cNameId[9], cImageId[9], cItemInStockNumId[9], cDescription[9]),
+            new Component(cNameId[10], cImageId[10], cItemInStockNumId[10], cDescription[10]),
+            new Component(cNameId[11], cImageId[11], cItemInStockNumId[11], cDescription[11]),
+            new Component(cNameId[12], cImageId[12], cItemInStockNumId[12], cDescription[12]),
+            new Component(cNameId[13], cImageId[13], cItemInStockNumId[13], cDescription[13]),
+            new Component(cNameId[14], cImageId[14], cItemInStockNumId[14], cDescription[14]),
+    };
+
     //test - hard code products
     ///*
     static String[] pNameId = {

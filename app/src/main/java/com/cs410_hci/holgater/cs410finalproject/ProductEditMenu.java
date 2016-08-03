@@ -13,11 +13,15 @@ import android.widget.TextView;
 
 public class ProductEditMenu extends AppCompatActivity {
 
+    static final int GET_COMPONENT = 1;
+
     String itemName;
     int imagePosition = 0;
 
     //the product
     Product product;
+
+    TableLayout table;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class ProductEditMenu extends AppCompatActivity {
 
 
         //set the recipe layout and resources
-        TableLayout table = (TableLayout) findViewById(R.id.recipeList);
+        table = (TableLayout) findViewById(R.id.recipeList);
         //loop through and add each part of the recipe
         for (int i = 0; i < product.getRecipe().size(); ++i) {
             //get the recipe item we're adding
@@ -96,10 +100,11 @@ public class ProductEditMenu extends AppCompatActivity {
         //make the row clickable
         addRow.setClickable(true);
         addRow.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProductEditMenu.this, RecipeItemSelect.class);
-                startActivity(intent);
+                startActivityForResult(intent, GET_COMPONENT);
             }
 
         });
@@ -109,6 +114,43 @@ public class ProductEditMenu extends AppCompatActivity {
         table.addView(addRow);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case (GET_COMPONENT) : {
+                if (resultCode == RecipeItemSelect.RESULT_OK) {
+                    Component newComponent = (Component) data.getExtras().get("ComponentReturn");
+                    //icon
+                    ImageView icon = new ImageView(this);
+                    icon.setImageResource(newComponent.getImage());
+                    //name
+                    TextView name = new TextView(this);
+                    name.setText(newComponent.getName());
+                    name.setTextSize(20);
+                    //amount
+                    TextView amount = new TextView(this);
+                    amount.setText(String.valueOf(newComponent.getInStockNum()));
+                    amount.setTextSize(20);
+                    //make a row
+                    TableRow row = new TableRow(this);
+                    //center items vertically
+                    row.setGravity(Gravity.FILL_HORIZONTAL);
+                    //add icon
+                    row.addView(icon);
+                    //edit icon size
+                    icon.setLayoutParams(new TableRow.LayoutParams(200, 200));
+                    //add name
+                    row.addView(name);
+                    //edit name size
+                    name.setLayoutParams(new TableRow.LayoutParams(400, 200));
+                    //add quantity
+                    row.addView(amount);
+                    //add the row to the table - second to last position
+                    table.addView(row, table.getChildCount()-1);
+                }
+            }
 
-
+        }
+    }
 }
