@@ -1,5 +1,7 @@
 package com.cs410_hci.holgater.cs410finalproject;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /**
@@ -9,12 +11,12 @@ public class Item implements Serializable{
     //both Products and Materials have:
     // names, images
     private String name;
-    private int image;
+    private Bitmap image;
     private int inStockNum;
     private String description;
 
     //constructor
-    public Item(String nameIn, int imageIn, int inStockNum, String descriptionIn) {
+    public Item(String nameIn, Bitmap imageIn, int inStockNum, String descriptionIn) {
         this.name = nameIn;
         this.image = imageIn;
         this.inStockNum = inStockNum;
@@ -25,7 +27,7 @@ public class Item implements Serializable{
         return name;
     }
 
-    public int getImage() {
+    public Bitmap getImage() {
         return image;
     }
 

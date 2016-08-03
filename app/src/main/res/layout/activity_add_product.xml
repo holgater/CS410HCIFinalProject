@@ -34,13 +34,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/RL">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/enter_product_name"
+                android:id="@+id/productName"
+                 />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/productName"
+                android:inputType="textAutoCorrect"
+                android:id="@+id/productNameInput"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/add_a_picture_of_the_component"
                 android:id="@+id/textView3"
-                android:layout_alignParentStart="true" />
+                android:layout_below="@id/productNameInput"/>
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -103,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/create"
-                android:id="@+id/button_Create_Com"
+                android:id="@+id/button_Create"
                 android:layout_below="@+id/editText" />
 
         </RelativeLayout>

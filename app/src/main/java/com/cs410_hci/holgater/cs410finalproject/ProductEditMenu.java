@@ -45,7 +45,7 @@ public class ProductEditMenu extends AppCompatActivity {
         itemInStockNumText.setText(String.valueOf(product.getInStockNum()));
         //set the image
         final ImageView imageView = (ImageView) findViewById(R.id.imageDisplay);
-        imageView.setImageResource(product.getImage());
+        imageView.setImageBitmap(product.getImage());
         //set the description
         final TextView description = (TextView) findViewById(R.id.descriptionText);
         description.setText(product.getDescription());
@@ -60,7 +60,7 @@ public class ProductEditMenu extends AppCompatActivity {
             //define the icon, name, and amount of each component
             //icon
             ImageView icon = new ImageView(this);
-            icon.setImageResource(currItem.getImage());
+            icon.setImageBitmap(currItem.getImage());
             //name
             TextView name = new TextView(this);
             name.setText(currItem.getName());

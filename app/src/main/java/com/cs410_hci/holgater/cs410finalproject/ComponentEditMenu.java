@@ -62,7 +62,7 @@ public class ComponentEditMenu extends AppCompatActivity {
         itemInStockNumText.setText(String.valueOf(component.getInStockNum()));
         //set the image
         final ImageView imageView = (ImageView) findViewById(R.id.imageDisplay);
-        imageView.setImageResource(component.getImage());
+        imageView.setImageBitmap(component.getImage());
     }
 
 }

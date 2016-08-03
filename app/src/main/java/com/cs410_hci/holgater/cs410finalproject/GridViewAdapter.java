@@ -52,7 +52,7 @@ public class GridViewAdapter extends BaseAdapter {
             TextView textView = (TextView) gridView.findViewById(R.id.gridText);
             ImageView imageView = (ImageView) gridView.findViewById(R.id.gridImage);
             textView.setText(items.get(position).getName());
-            imageView.setImageResource(items.get(position).getImage());
+            imageView.setImageBitmap(items.get(position).getImage());
 
 
         } else {
