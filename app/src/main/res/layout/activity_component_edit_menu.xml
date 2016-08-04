@@ -42,6 +42,14 @@
             android:paddingRight="16dp"
             android:orientation="vertical">
 
+            <!-- Dummy item to get cursor focus-->
+            <TextView
+                android:id="@+id/linearLayout_focus"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="0px"
+                android:layout_height="0px"/>
+
             <ImageView
                 android:id="@+id/imageDisplay"
                 android:layout_width="150dp"
@@ -59,12 +67,13 @@
                 android:text="In Stock"
                 android:layout_alignTop="@+id/imageDisplay"
                 android:layout_alignStart="@+id/itemInStockNumText"
-                android:id="@+id/textView" />
+                android:id="@+id/textView"
+                android:inputType="number"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/itemInStockNumText"
                 android:layout_width="60pt"
-                android:layout_height="15pt"
+                android:layout_height="25pt"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="In Stock"
                 android:layout_gravity="end"
@@ -116,26 +125,6 @@
                     android:id="@+id/descriptionText"
                     android:layout_gravity="left|top" />
             </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Tags"
-                android:id="@+id/tagTitle"
-                android:layout_below="@+id/frameLayout"
-                android:layout_alignParentStart="true"
-                android:textColor="#000000"/>
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="100dp"
-                android:id="@+id/tagsLayout"
-                android:layout_below="@+id/tagTitle"
-                android:layout_alignParentStart="true">
-
-            </GridLayout>
 
         </RelativeLayout>
     </ScrollView>
