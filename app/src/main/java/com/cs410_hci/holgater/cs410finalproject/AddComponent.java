@@ -3,21 +3,18 @@ package com.cs410_hci.holgater.cs410finalproject;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class AddComponent extends AppCompatActivity {
@@ -71,10 +68,11 @@ public class AddComponent extends AppCompatActivity {
         Button create = (Button) findViewById(R.id.button_Create_Com);
         final EditText desc = (EditText) findViewById(R.id.editText_com);
         final EditText name = (EditText) findViewById(R.id.componentNameInput);
+        final EditText unit = (EditText) findViewById(R.id.editText_unit);
         create.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 DataBase.loadProducts();
-                DataBase.components.add(new Component(name.getText().toString(),((BitmapDrawable)imageView.getDrawable()).getBitmap(),0, desc.getText().toString()));
+                DataBase.components.add(new Component(name.getText().toString(),((BitmapDrawable)imageView.getDrawable()).getBitmap(),0, desc.getText().toString(), unit.getText().toString()));
                 setResult(RESULT_OK, new Intent());
                 finish();
             }

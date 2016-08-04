@@ -39,4 +39,7 @@ public class Item implements Serializable{
         return description;
     }
 
+    public void setInStockNum(int inStockNum) {
+        this.inStockNum = inStockNum;
+    }
 }

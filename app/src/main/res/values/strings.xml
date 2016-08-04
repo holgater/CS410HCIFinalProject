@@ -114,4 +114,5 @@
     <string name="click_to_add_component_to_recipe">Click to add component to reciept</string>
     <string name="click_to_add_to_recipe">Click to add to recipe</string>
     <string name="recipe">Recipe</string>
+    <string name="unit">Unit</string>
 </resources>

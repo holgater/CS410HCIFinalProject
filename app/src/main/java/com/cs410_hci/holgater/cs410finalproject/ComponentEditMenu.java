@@ -11,33 +11,8 @@ public class ComponentEditMenu extends AppCompatActivity {
 
     String itemName;
     int imagePosition = 0;
-    ///*test - hard coded products
-    String[] pNameId = {
-            "name1",
-            "name2",
-            "name3",
-            "name4",
-            "name5"
-    };
 
-    int[] pImageId = {
-            R.drawable.sample_1,
-            R.drawable.sample_2,
-            R.drawable.sample_3,
-            R.drawable.sample_4,
-            R.drawable.sample_5
-    };
-
-    int[] pInStockNum = {
-            12,
-            2,
-            6,
-            15,
-            4
-    };
-    //*/
-
-    //the product
+    //the component
     Component component;
 
     @Override
@@ -61,9 +36,24 @@ public class ComponentEditMenu extends AppCompatActivity {
         //set the "in stock" amount
         final TextView itemInStockNumText = (TextView) findViewById(R.id.itemInStockNumText);
         itemInStockNumText.setText(String.valueOf(component.getInStockNum()));
+        //set component unit
+        final TextView compUnit = (TextView) findViewById(R.id.compUnit);
+        compUnit.setText(component.getUnit());
         //set the image
         final ImageView imageView = (ImageView) findViewById(R.id.imageDisplay);
         imageView.setImageBitmap(component.getImage());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //set new inStock num
+        TextView inStock = (TextView) findViewById(R.id.itemInStockNumText);
+        int newStock = Integer.parseInt(inStock.getText().toString());
+        component.setInStockNum(newStock);
+        //set new component Unit
+        TextView compUnit = (TextView) findViewById(R.id.compUnit);
+        component.setCompUnit(compUnit.getText().toString());
     }
 
 }

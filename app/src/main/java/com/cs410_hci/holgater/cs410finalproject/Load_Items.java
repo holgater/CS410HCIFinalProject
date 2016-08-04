@@ -2,8 +2,8 @@ package com.cs410_hci.holgater.cs410finalproject;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class Load_Items extends AppCompatActivity {
 
@@ -22,7 +22,7 @@ public class Load_Items extends AppCompatActivity {
         }
 
         for (int i = 0; i < 14; ++i) {
-            DataBase.components.add(new Component(Test.cNameId[i], BitmapFactory.decodeResource(getResources(), Test.cImageId[i]), Test.cItemInStockNumId[i], Test.cDescription[i]));
+            DataBase.components.add(new Component(Test.cNameId[i], BitmapFactory.decodeResource(getResources(), Test.cImageId[i]), Test.cItemInStockNumId[i], Test.cDescription[i], Test.cUnitType[i]));
         }
 
         Intent intent = new Intent(Load_Items.this, ProductListMenu.class);

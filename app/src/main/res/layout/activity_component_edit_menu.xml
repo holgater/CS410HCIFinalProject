@@ -88,16 +88,15 @@
                 android:layout_above="@+id/compUnit"
                 android:layout_alignLeft="@+id/itemInStockNumText" />
 
-            <TextView
+            <EditText
                 android:id="@+id/compUnit"
                 android:layout_width="75pt"
-                android:layout_height="15pt"
+                android:layout_height="25pt"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Unit Type"
                 android:layout_gravity="right"
                 android:layout_alignBottom="@+id/imageDisplay"
-                android:layout_alignStart="@+id/itemInStockNumText"
-                android:layout_marginBottom="25dp" />
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -1,11 +1,5 @@
 package com.cs410_hci.holgater.cs410finalproject;
 
-import android.graphics.BitmapFactory;
-
-import java.util.List;
-
-import static java.util.Arrays.asList;
-
 /**
  * Created by mtsvietukhin on 8/2/2016.
  */
@@ -84,6 +78,24 @@ public class Test {
             "Some patterned fabric - coolio",
             "Some patterned fabric - coolio"
 
+    };
+
+    static String[] cUnitType = {
+            "Sqr Yards",
+            "Sqr Yards",
+            "Sqr Yards",
+            "Sqr Yards",
+            "Sqr Yards",
+            "Sqr Yards",
+            "Sqr Yards",
+            "Sqr Yards",
+            "Sqr Yards",
+            "Buttons",
+            "Buttons",
+            "Buttons",
+            "Buttons",
+            "Sqr Yards",
+            "Sqr Yards"
     };
 
    /* static Component[] cComponents = {
