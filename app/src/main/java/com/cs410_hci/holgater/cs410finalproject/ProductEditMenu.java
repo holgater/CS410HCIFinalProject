@@ -4,13 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridView;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 public class ProductEditMenu extends AppCompatActivity {
@@ -48,6 +45,21 @@ public class ProductEditMenu extends AppCompatActivity {
         final TextView description = (TextView) findViewById(R.id.descriptionText);
         description.setText(product.getDescription());
 
+        //Process button
+        Button process = (Button) findViewById(R.id.processButton);
+        process.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText inStockNum = (EditText) findViewById(R.id.inStockNumInput);
+
+                //set focus and bring up keyboard for invisble editText field
+                //inStockNum.setEnabled(true);
+                //inStockNum.requestFocus();
+                inStockNum.setFocusableInTouchMode(true);
+            }
+        });
+
+        //Recipe grid
         eGridView = (ExpandableGridView) findViewById(R.id.gridViewCompShow);
         GridViewAdapter adapter = new GridViewAdapter(this, product.getRecipe());
         eGridView.setAdapter(adapter);
