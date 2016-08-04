@@ -20,7 +20,7 @@ public class RecipeItemSelect extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //create and populate the table
+       /* //create and populate the table
         TableLayout table = (TableLayout) findViewById(R.id.itemSelectTable);
         //create a row for each component
         for(int i = 0; i < Test.cNameId.length; ++i) {
@@ -69,7 +69,7 @@ public class RecipeItemSelect extends AppCompatActivity {
             //add the row to the table
             table.addView(row);
         }
-
+*/
 
     }
 

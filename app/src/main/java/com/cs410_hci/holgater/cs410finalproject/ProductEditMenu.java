@@ -35,7 +35,8 @@ public class ProductEditMenu extends AppCompatActivity {
         //setup intent
         Intent myIntent = getIntent();
         //get products from previous activity
-        product = (Product) myIntent.getSerializableExtra("product");
+        int position = (int) myIntent.getSerializableExtra("position");
+        product = DataBase.products.get(position);
 
         //set item name in toolbar title
         TextView itemNameText = (TextView) findViewById(R.id.toolbar_title);
@@ -54,7 +55,7 @@ public class ProductEditMenu extends AppCompatActivity {
         //set the recipe layout and resources
         table = (TableLayout) findViewById(R.id.recipeList);
         //loop through and add each part of the recipe
-        for (int i = 0; i < product.getRecipe().size(); ++i) {
+        /*for (int i = 0; i < product.getRecipe().size(); ++i) {
             //get the recipe item we're adding
             Item currItem = product.getRecipe().get(i);
             //define the icon, name, and amount of each component
@@ -87,7 +88,7 @@ public class ProductEditMenu extends AppCompatActivity {
            // amount.setLayoutParams(new TableRow.LayoutParams(200, 200));
             //add the row to the table
             table.addView(row);
-        }
+        }*/
         //add "add component" row
         //make text
         TextView addText = new TextView(this);
@@ -123,7 +124,7 @@ public class ProductEditMenu extends AppCompatActivity {
                     Component newComponent = (Component) data.getExtras().get("ComponentReturn");
                     //icon
                     ImageView icon = new ImageView(this);
-                    icon.setImageResource(newComponent.getImage());
+                    icon.setImageBitmap(newComponent.getImage());
                     //name
                     TextView name = new TextView(this);
                     name.setText(newComponent.getName());

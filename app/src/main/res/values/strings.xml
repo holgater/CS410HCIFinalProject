@@ -109,4 +109,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="enter_product_name">Enter product name</string>
+    <string name="enter_component_name">Enter component name</string>
 </resources>

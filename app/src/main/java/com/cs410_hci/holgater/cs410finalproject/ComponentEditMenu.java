@@ -52,7 +52,8 @@ public class ComponentEditMenu extends AppCompatActivity {
         //setup intent
         Intent myIntent = getIntent();
         //get products from previous activity
-        component = (Component) myIntent.getSerializableExtra("component");
+        int position = (int) myIntent.getSerializableExtra("position");
+        component = DataBase.components.get(position);
 
         //set item name in toolbar title
         TextView itemNameText = (TextView) findViewById(R.id.toolbar_title);

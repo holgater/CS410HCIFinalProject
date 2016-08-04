@@ -14,18 +14,18 @@ public class Product extends Item implements Serializable {
     private List<Item> recipe;
 
     //constructor
-    public Product(String nameIn, Bitmap imageIn, int inStockNumIn, String descriptionIn, List<Item> recipeIn) {
+    public Product(String nameIn, Bitmap imageIn, int inStockNumIn, String descriptionIn) {
         //initiate name, image as an Item
         super(nameIn, imageIn, inStockNumIn, descriptionIn);
-        recipe = recipeIn;
+        //recipe = recipeIn;
     }
 
-    public List<Item> getRecipe() {
+   /* public List<Item> getRecipe() {
         return recipe;
     }
 
     public void addToRecipe(Item itemIn) {
         recipe.add(itemIn);
-    }
+    }*/
 
 }

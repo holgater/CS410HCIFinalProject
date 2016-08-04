@@ -10,27 +10,15 @@ import android.widget.AdapterView;
 import android.widget.Button;
 
 public class ComponentListMenu extends AppCompatActivity {
-
+    ExpandableGridView eGridView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //AppCompatActivity setup
         super.onCreate(savedInstanceState);
         //setup layout
         setContentView(R.layout.activity_component_list_menu);
-
-        //load Products
-        DataBase.loadProducts();
-        //load materials
-        DataBase.loadComponents();
-        //test - hard code products
-
-
-        for (int i = 0; i < 15; ++i) {
-            DataBase.components.add(new Component(Test.cNameId[i], BitmapFactory.decodeResource(getResources(), Test.cImageId[i]), Test.cItemInStockNumId[i], Test.cDescription[i]));
-        }
-
         //setup toolbar
-        ExpandableGridView eGridView = (ExpandableGridView) findViewById(R.id.eGridView);
+        eGridView = (ExpandableGridView) findViewById(R.id.eGridView);
         eGridView.setAdapter(new GridViewAdapter(this, DataBase.components));
         eGridView.setExpanded(true);
 
@@ -40,7 +28,7 @@ public class ComponentListMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 //create intent to start ComponentEditMenu activity
                 Intent intent = new Intent(ComponentListMenu.this, ComponentEditMenu.class);
-                intent.putExtra("component", DataBase.components.get(position));
+                intent.putExtra("position", position);
                 startActivity(intent);
             }
         });
@@ -59,16 +47,20 @@ public class ComponentListMenu extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(ComponentListMenu.this, AddComponent.class);
-                startActivity(intent);
+                startActivityForResult(intent, 55);
             }
         });
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 55 && resultCode == RESULT_OK) {
+            //Update grid view with new updated List.
+            eGridView.setAdapter(new GridViewAdapter(this, DataBase.components));
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //save products and materials for next time
-        DataBase.saveProducts();
         DataBase.saveComponents();
     }
 }

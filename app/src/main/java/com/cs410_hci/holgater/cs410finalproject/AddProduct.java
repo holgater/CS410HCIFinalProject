@@ -26,6 +26,7 @@ public class AddProduct extends AppCompatActivity {
         setContentView(R.layout.activity_add_product);
 
         imageView = (ImageView) findViewById(R.id.ImageView);
+        imageView.setImageResource(R.drawable.noimagefound);
 
         //Use camera to get thumbnail
         RadioButton productsButton = (RadioButton) findViewById(R.id.Camera);
@@ -71,10 +72,9 @@ public class AddProduct extends AppCompatActivity {
         final EditText name = (EditText) findViewById(R.id.productNameInput);
         create.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DataBase.products.add(new Product(name.getText().toString(),((BitmapDrawable)imageView.getDrawable()).getBitmap(),0, desc.getText().toString(), null));
-                /*ExpandableGridView eGridView = (ExpandableGridView) findViewById(R.id.eGridView);
-                eGridView.setAdapter(new GridViewAdapter(, DataBase.products));
-                eGridView.setExpanded(true);*/
+                DataBase.loadProducts();
+                DataBase.products.add(new Product(name.getText().toString(),((BitmapDrawable)imageView.getDrawable()).getBitmap(),0, desc.getText().toString()));
+                setResult(RESULT_OK, new Intent());
                 finish();
             }
         });
@@ -92,11 +92,7 @@ public class AddProduct extends AppCompatActivity {
                 bitmap = MediaStore.Images.Media.getBitmap(
                         getContentResolver(), imageUri);
                 imageView.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

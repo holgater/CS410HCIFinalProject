@@ -86,7 +86,7 @@ public class Test {
 
     };
 
-    static Component[] cComponents = {
+   /* static Component[] cComponents = {
             new Component(cNameId[0], cImageId[0], cItemInStockNumId[0], cDescription[0]),
             new Component(cNameId[1], cImageId[1], cItemInStockNumId[1], cDescription[1]),
             new Component(cNameId[2], cImageId[2], cItemInStockNumId[2], cDescription[2]),
@@ -102,7 +102,7 @@ public class Test {
             new Component(cNameId[12], cImageId[12], cItemInStockNumId[12], cDescription[12]),
             new Component(cNameId[13], cImageId[13], cItemInStockNumId[13], cDescription[13]),
             new Component(cNameId[14], cImageId[14], cItemInStockNumId[14], cDescription[14]),
-    };
+    };*/
 
     //test - hard code products
     ///*

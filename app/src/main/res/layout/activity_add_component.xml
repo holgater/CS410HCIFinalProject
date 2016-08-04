@@ -38,8 +38,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/enter_component_name"
+                android:id="@+id/componentName"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/componentName"
+                android:inputType="textAutoCorrect"
+                android:id="@+id/componentNameInput"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/add_a_picture_of_the_component"
                 android:id="@+id/textView3"
+                android:layout_below="@+id/componentNameInput"
                 android:layout_alignParentStart="true" />
 
             <RadioGroup
@@ -74,7 +90,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp" />
             </RadioGroup>
-            <ImageView android:id="@+id/ImageView"
+            <ImageView android:id="@+id/ImageViewComp"
                 android:layout_width="120dp"
                 android:layout_height="140dp"
                 android:background="#000000"
@@ -104,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/create"
                 android:id="@+id/button_Create_Com"
-                android:layout_below="@+id/editText" />
+                android:layout_below="@+id/editText_com" />
 
         </RelativeLayout>
     </ScrollView>
