@@ -3,6 +3,7 @@ package com.cs410_hci.holgater.cs410finalproject;
 import android.graphics.Bitmap;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -17,15 +18,15 @@ public class Product extends Item implements Serializable {
     public Product(String nameIn, Bitmap imageIn, int inStockNumIn, String descriptionIn) {
         //initiate name, image as an Item
         super(nameIn, imageIn, inStockNumIn, descriptionIn);
-        //recipe = recipeIn;
+        recipe = new LinkedList<>();
     }
 
-   /* public List<Item> getRecipe() {
+    public List<Item> getRecipe() {
         return recipe;
     }
 
     public void addToRecipe(Item itemIn) {
         recipe.add(itemIn);
-    }*/
+    }
 
 }

@@ -164,24 +164,29 @@
             android:layout_alignParentStart="true"
             android:textColor="#000000"/>
 
-        <FrameLayout
+        <com.cs410_hci.holgater.cs410finalproject.ExpandableGridView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/gridViewCompShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnWidth="90dp"
+            android:numColumns="auto_fit"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:focusable="true"
+            android:clickable="true"
+            tools:context=".RecipeItemSelect"
+            android:isScrollContainer="true"
+            android:layout_below="@id/recipeTitle"/>
+
+        <Button
+            android:id="@+id/add_to_receipt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recipeTitle"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentStart="true"
-            android:id="@+id/frame01"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true">
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/recipeList"
-                android:layout_gravity="left|center_vertical" />
-
-        </FrameLayout>
-
+            android:text="@string/click_to_add_component_to_reciept"
+            android:layout_below="@+id/gridViewCompShow"/>
     </RelativeLayout>
     </ScrollView>
 

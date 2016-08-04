@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -14,14 +16,9 @@ import android.widget.TextView;
 public class ProductEditMenu extends AppCompatActivity {
 
     static final int GET_COMPONENT = 1;
-
-    String itemName;
-    int imagePosition = 0;
-
     //the product
     Product product;
-
-    TableLayout table;
+    ExpandableGridView eGridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,68 +48,20 @@ public class ProductEditMenu extends AppCompatActivity {
         final TextView description = (TextView) findViewById(R.id.descriptionText);
         description.setText(product.getDescription());
 
+        eGridView = (ExpandableGridView) findViewById(R.id.gridViewCompShow);
+        GridViewAdapter adapter = new GridViewAdapter(this, product.getRecipe());
+        eGridView.setAdapter(adapter);
+        eGridView.setExpanded(true);
 
-        //set the recipe layout and resources
-        table = (TableLayout) findViewById(R.id.recipeList);
-        //loop through and add each part of the recipe
-        /*for (int i = 0; i < product.getRecipe().size(); ++i) {
-            //get the recipe item we're adding
-            Item currItem = product.getRecipe().get(i);
-            //define the icon, name, and amount of each component
-            //icon
-            ImageView icon = new ImageView(this);
-            icon.setImageBitmap(currItem.getImage());
-            //name
-            TextView name = new TextView(this);
-            name.setText(currItem.getName());
-            name.setTextSize(20);
-            //amount
-            TextView amount = new TextView(this);
-            amount.setText(String.valueOf(currItem.getInStockNum()));
-            amount.setTextSize(20);
-            //make a row
-            TableRow row = new TableRow(this);
-            //center items vertically
-            row.setGravity(Gravity.FILL_HORIZONTAL);
-            //add icon
-            row.addView(icon);
-            //edit icon size
-            icon.setLayoutParams(new TableRow.LayoutParams(200, 200));
-            //add name
-            row.addView(name);
-            //edit name size
-            name.setLayoutParams(new TableRow.LayoutParams(400, 200));
-            //add quantity
-            row.addView(amount);
-            //edit quantity size
-           // amount.setLayoutParams(new TableRow.LayoutParams(200, 200));
-            //add the row to the table
-            table.addView(row);
-        }*/
-        //add "add component" row
-        //make text
-        TextView addText = new TextView(this);
-        addText.setText("Add new component");
-        addText.setTextSize(20);
         //make row
-        TableRow addRow = new TableRow(this);
-        addRow.setWeightSum(6f);
-        addRow.setGravity(Gravity.CENTER_VERTICAL);
-        //make the row clickable
-        addRow.setClickable(true);
-        addRow.setOnClickListener(new View.OnClickListener() {
-
+        Button addButton = (Button) findViewById(R.id.add_to_receipt);
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProductEditMenu.this, RecipeItemSelect.class);
                 startActivityForResult(intent, GET_COMPONENT);
             }
-
         });
-        //add components to row
-        addRow.addView(addText);
-        //add row to table
-        table.addView(addRow);
     }
 
     @Override
@@ -121,34 +70,12 @@ public class ProductEditMenu extends AppCompatActivity {
         switch (requestCode) {
             case (GET_COMPONENT) : {
                 if (resultCode == RecipeItemSelect.RESULT_OK) {
-                    Component newComponent = (Component) data.getExtras().get("ComponentReturn");
-                    //icon
-                    ImageView icon = new ImageView(this);
-                    icon.setImageBitmap(newComponent.getImage());
-                    //name
-                    TextView name = new TextView(this);
-                    name.setText(newComponent.getName());
-                    name.setTextSize(20);
-                    //amount
-                    TextView amount = new TextView(this);
-                    amount.setText(String.valueOf(newComponent.getInStockNum()));
-                    amount.setTextSize(20);
-                    //make a row
-                    TableRow row = new TableRow(this);
-                    //center items vertically
-                    row.setGravity(Gravity.FILL_HORIZONTAL);
-                    //add icon
-                    row.addView(icon);
-                    //edit icon size
-                    icon.setLayoutParams(new TableRow.LayoutParams(200, 200));
-                    //add name
-                    row.addView(name);
-                    //edit name size
-                    name.setLayoutParams(new TableRow.LayoutParams(400, 200));
-                    //add quantity
-                    row.addView(amount);
-                    //add the row to the table - second to last position
-                    table.addView(row, table.getChildCount()-1);
+                    int position = (int) data.getExtras().get("position");
+                    //Add to list inside product for father use
+                    product.addToRecipe(DataBase.components.get(position));
+                    //Show product list in
+                    GridViewAdapter adapter = new GridViewAdapter(this, product.getRecipe());
+                    eGridView.setAdapter(adapter);
                 }
             }
 
