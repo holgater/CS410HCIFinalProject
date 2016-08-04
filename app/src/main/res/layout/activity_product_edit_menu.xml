@@ -134,33 +134,14 @@
                 android:layout_gravity="left|top" />
         </FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Tags"
-            android:id="@+id/tagTitle"
-            android:layout_below="@+id/frameLayout"
-            android:layout_alignParentStart="true"
-            android:textColor="#000000"/>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="50dp"
-            android:layout_below="@+id/tagTitle"
-            android:layout_alignParentStart="true"
-            android:id="@+id/tagsLayout">
-
-        </GridLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Recipe"
+            android:text="@string/recipe"
             android:id="@+id/recipeTitle"
-            android:layout_below="@+id/tagsLayout"
+            android:layout_below="@+id/frameLayout"
             android:layout_alignParentStart="true"
             android:textColor="#000000"/>
 
@@ -185,7 +166,7 @@
             android:id="@+id/add_to_receipt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/click_to_add_component_to_reciept"
+            android:text="@string/click_to_add_to_recipe"
             android:layout_below="@+id/gridViewCompShow"/>
     </RelativeLayout>
     </ScrollView>
