@@ -29,4 +29,8 @@ public class Product extends Item implements Serializable {
         recipe.add(itemIn);
     }
 
+    public void deleteRecipe(int position){
+        recipe.remove(position);
+    }
+
 }

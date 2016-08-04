@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Richard on 7/16/2016.
  */
-public class GridViewAdapter extends BaseAdapter {
+public class GridViewAdapter extends BaseAdapter{
     //context
     private Context context;
     //array of products and materials that will be displayed

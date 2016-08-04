@@ -116,4 +116,5 @@
     <string name="recipe">Recipe</string>
     <string name="unit">Unit</string>
     <string name="title_activity_process_number">ProcessNumber</string>
+    <string name="note_to_remove_item_from_recipe_click_and_hold">Note: to remove item from Recipe click and hold!</string>
 </resources>

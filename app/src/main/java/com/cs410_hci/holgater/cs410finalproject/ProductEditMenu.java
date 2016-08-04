@@ -9,10 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProductEditMenu extends AppCompatActivity {
 
@@ -105,9 +107,24 @@ public class ProductEditMenu extends AppCompatActivity {
 
         //Recipe grid
         eGridView = (ExpandableGridView) findViewById(R.id.gridViewCompShow);
-        GridViewAdapter adapter = new GridViewAdapter(this, product.getRecipe());
+        final GridViewAdapter adapter = new GridViewAdapter(this, product.getRecipe());
         eGridView.setAdapter(adapter);
         eGridView.setExpanded(true);
+
+        eGridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long arg3) {
+
+                //eGridView.removeViewAt();
+
+                product.deleteRecipe(position);
+                //adapter.notifyDataSetChanged();
+                eGridView.setAdapter(adapter);
+                //set the image as wallpaper
+                return true;
+            }
+        });
 
         //make row
         Button addButton = (Button) findViewById(R.id.add_to_receipt);

@@ -152,6 +152,15 @@
             android:layout_below="@+id/frameLayout"
             android:layout_alignParentStart="true"
             android:textColor="#000000"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/note_to_remove_item_from_recipe_click_and_hold"
+            android:id="@+id/removeText"
+            android:layout_below="@+id/recipeTitle"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"/>
 
         <com.cs410_hci.holgater.cs410finalproject.ExpandableGridView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -168,7 +177,7 @@
             android:clickable="true"
             tools:context=".RecipeItemSelect"
             android:isScrollContainer="true"
-            android:layout_below="@id/recipeTitle"/>
+            android:layout_below="@id/removeText"/>
 
         <Button
             android:id="@+id/add_to_receipt"

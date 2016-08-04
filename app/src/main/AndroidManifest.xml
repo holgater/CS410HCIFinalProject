@@ -10,7 +10,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProductListMenu"></activity>
+        <activity android:name=".ProductListMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ProductEditMenu"
             android:label="@string/title_activity_item_edit_menu" />
@@ -26,11 +31,6 @@
             android:label="@string/title_activity_recipe_item_select"
             android:theme="@style/AppTheme" />
         <activity android:name=".Load_Items">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
