@@ -1,9 +1,13 @@
 package com.cs410_hci.holgater.cs410finalproject;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,9 +17,12 @@ import android.widget.TextView;
 public class ProductEditMenu extends AppCompatActivity {
 
     static final int GET_COMPONENT = 1;
+    static final int GET_PROCESS_NUM = 2;
     //the product
     Product product;
     ExpandableGridView eGridView;
+
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +54,52 @@ public class ProductEditMenu extends AppCompatActivity {
 
         //Process button
         Button process = (Button) findViewById(R.id.processButton);
-        process.setOnClickListener(new View.OnClickListener() {
+        process.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText inStockNum = (EditText) findViewById(R.id.inStockNumInput);
+                //Popup dialog box to get number
+                final TextView inStockNum = (TextView) findViewById(R.id.itemInStockNumText);
 
-                //set focus and bring up keyboard for invisble editText field
-                //inStockNum.setEnabled(true);
-                //inStockNum.requestFocus();
-                inStockNum.setFocusableInTouchMode(true);
+                //get prompts.xml view
+                LayoutInflater layoutInflater = LayoutInflater.from(context);
+                View promptView = layoutInflater.inflate(R.layout.prompts, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                // set prompts.xml to be the layout file of the alertdialog builder
+                alertDialogBuilder.setView(promptView);
+
+                final EditText input = (EditText) promptView.findViewById(R.id.userInput);
+
+                // setup a dialog window
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // get user input and set it to result
+                                int prevNum = Integer.parseInt(inStockNum.getText().toString());
+                                int subtractNum = Integer.parseInt(input.getText().toString());
+                                int finalNum;
+                                if(prevNum - subtractNum < 0) {
+                                    finalNum = 0;
+                                } else {
+                                    finalNum = prevNum - subtractNum;
+                                }
+                                inStockNum.setText(String.valueOf(finalNum));
+                            }
+                        })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,	int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                // create an alert dialog
+                AlertDialog alertD = alertDialogBuilder.create();
+
+                alertD.show();
+
             }
         });
 
