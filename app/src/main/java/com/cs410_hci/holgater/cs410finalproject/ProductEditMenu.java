@@ -68,6 +68,10 @@ public class ProductEditMenu extends AppCompatActivity {
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
+                //set text
+                TextView promptText = (TextView) promptView.findViewById(R.id.promptMessage);
+                promptText.setText("How many items to process?");
+
                 // set prompts.xml to be the layout file of the alertdialog builder
                 alertDialogBuilder.setView(promptView);
 
@@ -87,6 +91,58 @@ public class ProductEditMenu extends AppCompatActivity {
                                 } else {
                                     finalNum = prevNum - subtractNum;
                                 }
+                                inStockNum.setText(String.valueOf(finalNum));
+                            }
+                        })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,	int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                // create an alert dialog
+                AlertDialog alertD = alertDialogBuilder.create();
+
+                alertD.show();
+
+            }
+        });
+
+        //Restock button
+        Button restock = (Button) findViewById(R.id.restockButton);
+        restock.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Popup dialog box to get number
+                final TextView inStockNum = (TextView) findViewById(R.id.itemInStockNumText);
+                final TextView potentialNum = (TextView) findViewById(R.id.potentialStock);
+
+                //get prompts.xml view
+                LayoutInflater layoutInflater = LayoutInflater.from(context);
+                View promptView = layoutInflater.inflate(R.layout.prompts, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                //set text
+                TextView promptText = (TextView) promptView.findViewById(R.id.promptMessage);
+                promptText.setText("How many items to restock?");
+
+                // set prompts.xml to be the layout file of the alertdialog builder
+                alertDialogBuilder.setView(promptView);
+
+                final EditText input = (EditText) promptView.findViewById(R.id.userInput);
+
+                // setup a dialog window
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // get user input and set it to result
+                                int prevNum = Integer.parseInt(inStockNum.getText().toString());
+                                int addNum = Integer.parseInt(input.getText().toString());
+                                int finalNum = prevNum + addNum;
+
                                 inStockNum.setText(String.valueOf(finalNum));
                             }
                         })
