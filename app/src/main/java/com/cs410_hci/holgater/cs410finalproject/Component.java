@@ -26,6 +26,7 @@ public class Component extends Item implements Serializable, Cloneable{
         this.inStockNum = inStockNumIn;
         this.description = descriptionIn;
         this.unitType = unitTypeIn;
+        //
     }
 
 
