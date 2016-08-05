@@ -6,15 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 public class RecipeItemSelect extends AppCompatActivity {
@@ -56,7 +51,13 @@ public class RecipeItemSelect extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 // get user input and set it to result
                                 //int prevNum = Integer.parseInt(inStockNum.getText().toString());
-                                int addNum = Integer.parseInt(input.getText().toString());
+                                //if user enters no input - use 1
+                                int addNum;
+                                if (input.getText().toString().equals("")) {
+                                    addNum = 1;
+                                } else {
+                                    addNum = Integer.parseInt(input.getText().toString());
+                                }
                                 intent.putExtra("count", addNum);
                                 intent.putExtra("position", position);
                                 setResult(RESULT_OK, intent);

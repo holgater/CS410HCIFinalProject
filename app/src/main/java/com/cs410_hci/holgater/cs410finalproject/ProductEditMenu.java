@@ -89,7 +89,13 @@ public class ProductEditMenu extends AppCompatActivity{
                             public void onClick(DialogInterface dialog, int id) {
                                 //prev number in stock and input
                                 int prevNum = Integer.parseInt(inStockNum.getText().toString());
-                                int inputNum = Integer.parseInt(input.getText().toString());
+                                //if user enters no input - use 0
+                                int inputNum;
+                                if (input.getText().toString().equals("")) {
+                                    inputNum = 0;
+                                } else {
+                                    inputNum = Integer.parseInt(input.getText().toString());
+                                }
                                 //final number to set in stock to
                                 int finalNum;
                                 //overflow in case number too large
@@ -172,8 +178,13 @@ public class ProductEditMenu extends AppCompatActivity{
                                 // get current values on inStock and potentialStock
                                 int prevInNum = Integer.parseInt(inStockNum.getText().toString());
                                 int prevPotNum = Integer.parseInt(potentialNum.getText().toString());
-                                //get user input num
-                                int inputNum = Integer.parseInt(input.getText().toString());
+                                //get user input num - set 0 if no input
+                                int inputNum;
+                                if (input.getText().toString().equals("")) {
+                                    inputNum = 0;
+                                } else {
+                                    inputNum = Integer.parseInt(input.getText().toString());
+                                }
                                 //the actual amount that will be restocked
                                 int restockNum = inputNum;
                                 int overflow = 0;
