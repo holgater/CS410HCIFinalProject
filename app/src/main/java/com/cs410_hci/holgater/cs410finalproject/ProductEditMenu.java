@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ProductEditMenu extends AppCompatActivity {
+public class ProductEditMenu extends AppCompatActivity{
 
     static final int GET_COMPONENT = 1;
     static final int GET_PROCESS_NUM = 2;
@@ -203,7 +203,7 @@ public class ProductEditMenu extends AppCompatActivity {
                     int position = (int) data.getExtras().get("position");
                     int count = (int) data.getExtras().get("count");
                     //Add to list inside product for father use
-                    Item item = DataBase.components.get(position);
+                    Item item = DataBase.components.get(position).clone();
                     ((Component)item).setCount(count);
                     product.addToRecipe(item);
                     //Show product list in

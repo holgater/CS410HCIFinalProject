@@ -11,10 +11,10 @@ import java.io.Serializable;
 public class Item implements Serializable{
     //both Products and Materials have:
     // names, images
-    private String name;
-    private Bitmap image;
-    private int inStockNum;
-    private String description;
+    protected String name;
+    protected Bitmap image;
+    protected int inStockNum;
+    protected String description;
 
     //constructor
     public Item(String nameIn, Bitmap imageIn, int inStockNum, String descriptionIn) {
@@ -43,5 +43,6 @@ public class Item implements Serializable{
     public void setInStockNum(int inStockNum) {
         this.inStockNum = inStockNum;
     }
+
 
 }
