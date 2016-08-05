@@ -20,29 +20,33 @@ public class ProductListMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Perhaps set content view here
+        DataBase.loadProducts();
+        //load materials
+        DataBase.loadComponents();
 
-        prefs = getSharedPreferences("com.cs410_hci.holgater.cs410finalproject", MODE_PRIVATE);
+        //Fill in database on a first run
+        for (int i = 0; i < 14; ++i) {
+            DataBase.products.add(new Product(Test.pNameId[i], BitmapFactory.decodeResource(getResources(), Test.pImageId[i]), Test.pItemInStockNumId[i], Test.pDescription[i]));
+        }
+
+        for (int i = 0; i < 14; ++i) {
+            DataBase.components.add(new Component(Test.cNameId[i], BitmapFactory.decodeResource(getResources(), Test.cImageId[i]), Test.cItemInStockNumId[i], Test.cDescription[i], Test.cUnitType[i]));
+        }
+
+        DataBase.saveComponents();
+        DataBase.saveProducts();
+
+        //prefs = getSharedPreferences("com.cs410_hci.holgater.cs410finalproject3", MODE_PRIVATE);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        if (prefs.getBoolean("firstrun", true)) {
-            DataBase.loadProducts();
-            //load materials
-            DataBase.loadComponents();
+       /* if (prefs.getBoolean("firstrun", true)) {
 
-            //Fill in database on a first run
-            for (int i = 0; i < 14; ++i) {
-                DataBase.products.add(new Product(Test.pNameId[i], BitmapFactory.decodeResource(getResources(), Test.pImageId[i]), Test.pItemInStockNumId[i], Test.pDescription[i]));
-            }
-
-            for (int i = 0; i < 14; ++i) {
-                DataBase.components.add(new Component(Test.cNameId[i], BitmapFactory.decodeResource(getResources(), Test.cImageId[i]), Test.cItemInStockNumId[i], Test.cDescription[i], Test.cUnitType[i]));
-            }
             prefs.edit().putBoolean("firstrun", false).apply();
-        }
+        }*/
         //setup layout
         setContentView(R.layout.activity_product_list_menu);
 
