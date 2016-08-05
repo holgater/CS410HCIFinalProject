@@ -111,4 +111,21 @@ public class DataBase {
             e.printStackTrace();
         }
     }
+
+
+    public static Item NameToItem(String name) {
+        //check each component to match name
+        for (int i = 0; i < DataBase.components.size(); ++ i) {
+            if (components.get(i).getName().equals(name))
+                return components.get(i);
+        }
+        //check each product to match name
+        for (int i = 0; i < DataBase.products.size(); ++ i) {
+            if (products.get(i).getName().equals(name))
+                return products.get(i);
+        }
+
+        //didn't find anything
+        return null;
+    }
 }

@@ -87,20 +87,29 @@ public class ProductEditMenu extends AppCompatActivity{
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                // get user input and set it to result
+                                //prev number in stock and input
                                 int prevNum = Integer.parseInt(inStockNum.getText().toString());
-                                int subtractNum = Integer.parseInt(input.getText().toString());
+                                int inputNum = Integer.parseInt(input.getText().toString());
+                                //final number to set in stock to
                                 int finalNum;
-                                if(prevNum - subtractNum < 0) {
+                                //overflow in case number too large
+                                int overflow = 0;
+                                //if number too large
+                                if(prevNum - inputNum < 0) {
+                                    //calculate overflow, display number, set final to 0
+                                    overflow = inputNum - prevNum;
+                                    displayError("ProcessOverflow", overflow, prevNum);
                                     finalNum = 0;
                                 } else {
-                                    finalNum = prevNum - subtractNum;
+                                    //otherwise deduct input amount normally
+                                    finalNum = prevNum - inputNum;
                                 }
 
                                 //re-calculate and set in-stock number
                                 product.setInStockNum(finalNum);
-                                TextView potential = (TextView) findViewById(R.id.potentialStock);
-                                potential.setText(calculatePotential());
+                                //reset inStock num
+                                final TextView itemInStockNumText = (TextView) findViewById(R.id.itemInStockNumText);
+                                itemInStockNumText.setText(String.valueOf(product.getInStockNum()));
                             }
                         })
                         .setNegativeButton("Cancel",
@@ -178,7 +187,7 @@ public class ProductEditMenu extends AppCompatActivity{
 
                                 //if there was overflow, we want to display an error saying how many couldn't be made
                                 if(overflow > 0) {
-                                    displayError("Overflow", overflow, restockNum);
+                                    displayError("RestockOverflow", overflow, restockNum);
                                 }
 
                                 //restock the max number possible (may be below input num if limited by stock)
@@ -186,6 +195,8 @@ public class ProductEditMenu extends AppCompatActivity{
                                 for(int i =  0; i < recipe.size(); ++i) {
                                     currItem = (Component) recipe.get(i);
                                     currInStockNum = currItem.getInStockNum();
+                                    //get the actually component from the database
+                                    DataBase.NameToItem(currItem.getName()).setInStockNum(currInStockNum - (restockNum*currItem.getCount()));
                                     currItem.setInStockNum(currInStockNum - (restockNum*currItem.getCount()));
                                 }
 
@@ -260,10 +271,13 @@ public class ProductEditMenu extends AppCompatActivity{
         // set prompts.xml to be the layout file of the alertdialog builder
         alertDialogBuilder.setView(promptView);
 
-        if(error.equals("Overflow")) {
+        if(error.equals("RestockOverflow")) {
             //set text
             TextView promptText = (TextView) promptView.findViewById(R.id.promptMessage);
             promptText.setText("Could not restock all items - " + valueInOne + " items not restocked." + "\n" + valueInTwo + " items succesfully restocked");
+        } else if (error.equals("ProcessOverflow")) {
+            TextView promptText = (TextView) promptView.findViewById(R.id.promptMessage);
+            promptText.setText("Could not process all items - " + valueInOne + " items not processed." + "\n" + valueInTwo + " items succesfully processed");
         }
 
         // setup a dialog window

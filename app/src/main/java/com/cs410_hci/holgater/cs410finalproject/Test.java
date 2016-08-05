@@ -191,5 +191,5 @@ public class Test {
             "An original pattern from Textile champion featuring meaty meat. At last, some fun, silly, yet still wearable headbands for adults! For those of us who enjoy life with a light heart. This headband features original graphics by Textile Champion. "
     };
 
-    //*/
+
 }
