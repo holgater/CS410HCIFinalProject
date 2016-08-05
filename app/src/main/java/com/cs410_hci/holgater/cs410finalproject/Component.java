@@ -48,4 +48,8 @@ public class Component extends Item implements Serializable, Cloneable{
     public Component clone(){
         return new Component(name,image,inStockNum,description,unitType);
     }
+
+    public int getCount() {
+        return count;
+    }
 }

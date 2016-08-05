@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.List;
 
 public class ProductEditMenu extends AppCompatActivity{
 
@@ -55,6 +55,10 @@ public class ProductEditMenu extends AppCompatActivity{
         final TextView description = (TextView) findViewById(R.id.descriptionText);
         description.setText(product.getDescription());
 
+        //calculate and set potential stock number
+        TextView potential = (TextView) findViewById(R.id.potentialStock);
+        potential.setText(calculatePotential());
+
         //Process button
         Button process = (Button) findViewById(R.id.processButton);
         process.setOnClickListener(new Button.OnClickListener() {
@@ -92,7 +96,11 @@ public class ProductEditMenu extends AppCompatActivity{
                                 } else {
                                     finalNum = prevNum - subtractNum;
                                 }
-                                inStockNum.setText(String.valueOf(finalNum));
+
+                                //re-calculate and set in-stock number
+                                product.setInStockNum(finalNum);
+                                TextView potential = (TextView) findViewById(R.id.potentialStock);
+                                potential.setText(calculatePotential());
                             }
                         })
                         .setNegativeButton("Cancel",
@@ -111,7 +119,7 @@ public class ProductEditMenu extends AppCompatActivity{
         });
 
         //Restock button
-        Button restock = (Button) findViewById(R.id.restockButton);
+        final Button restock = (Button) findViewById(R.id.restockButton);
         restock.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,12 +147,56 @@ public class ProductEditMenu extends AppCompatActivity{
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                // get user input and set it to result
-                                int prevNum = Integer.parseInt(inStockNum.getText().toString());
-                                int addNum = Integer.parseInt(input.getText().toString());
-                                int finalNum = prevNum + addNum;
+                                //deduct from components in stock --
+                                //get recipe for product
+                                List<Item> recipe = product.getRecipe();
+                                Component currItem;
+                                int currInStockNum;
 
-                                inStockNum.setText(String.valueOf(finalNum));
+                                // get current values on inStock and potentialStock
+                                int prevInNum = Integer.parseInt(inStockNum.getText().toString());
+                                int prevPotNum = Integer.parseInt(potentialNum.getText().toString());
+                                //get user input num
+                                int inputNum = Integer.parseInt(input.getText().toString());
+                                //the actual amount that will be restocked
+                                int restockNum = inputNum;
+                                int overflow = 0;
+                                //loop through each component in the recipe and see if any deductions go beyond the componenets in stock
+                                for(int i =  0; i < recipe.size(); ++i) {
+                                    currItem = (Component) recipe.get(i);
+                                    currInStockNum = currItem.getInStockNum();
+                                    //the amount of the current component to deduct
+                                    int deductNum = currItem.getCount()*inputNum;
+                                    //check to see if full amount can be deducted
+                                    if(currInStockNum - deductNum < 0) {
+                                        //we only want to stock the minimum possible
+                                        restockNum = Math.min(restockNum, (currInStockNum/currItem.getCount()));
+                                        //record what the overflow was
+                                        overflow = deductNum - currInStockNum;
+                                    }
+                                }
+
+                                //if there was overflow, we want to display an error saying how many couldn't be made
+                                if(overflow > 0) {
+                                    displayError("Overflow", overflow, restockNum);
+                                }
+
+                                //restock the max number possible (may be below input num if limited by stock)
+                                //loop through each component in the recipe and deduct
+                                for(int i =  0; i < recipe.size(); ++i) {
+                                    currItem = (Component) recipe.get(i);
+                                    currInStockNum = currItem.getInStockNum();
+                                    currItem.setInStockNum(currInStockNum - (restockNum*currItem.getCount()));
+                                }
+
+                                //add the restock num to the new in stock num
+                                product.setInStockNum(prevInNum + restockNum);
+                                final TextView itemInStockNumText = (TextView) findViewById(R.id.itemInStockNumText);
+                                itemInStockNumText.setText(String.valueOf(product.getInStockNum()));
+
+                                //re-calculate and set potential stock number
+                                TextView potential = (TextView) findViewById(R.id.potentialStock);
+                                potential.setText(calculatePotential());
                             }
                         })
                         .setNegativeButton("Cancel",
@@ -176,6 +228,9 @@ public class ProductEditMenu extends AppCompatActivity{
                 //eGridView.removeViewAt();
 
                 product.deleteRecipe(position);
+                //calculate and set potential stock number
+                TextView potential = (TextView) findViewById(R.id.potentialStock);
+                potential.setText(calculatePotential());
                 //adapter.notifyDataSetChanged();
                 eGridView.setAdapter(adapter);
                 //set the image as wallpaper
@@ -190,8 +245,57 @@ public class ProductEditMenu extends AppCompatActivity{
             public void onClick(View view) {
                 Intent intent = new Intent(ProductEditMenu.this, RecipeItemSelect.class);
                 startActivityForResult(intent, GET_COMPONENT);
+
             }
         });
+    }
+
+    private void displayError(String error, int valueInOne, int valueInTwo) {
+        //get prompts.xml view
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View promptView = layoutInflater.inflate(R.layout.error, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+        // set prompts.xml to be the layout file of the alertdialog builder
+        alertDialogBuilder.setView(promptView);
+
+        if(error.equals("Overflow")) {
+            //set text
+            TextView promptText = (TextView) promptView.findViewById(R.id.promptMessage);
+            promptText.setText("Could not restock all items - " + valueInOne + " items not restocked." + "\n" + valueInTwo + " items succesfully restocked");
+        }
+
+        // setup a dialog window
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+
+        // create an alert dialog
+        AlertDialog alertD = alertDialogBuilder.create();
+
+        alertD.show();
+
+    }
+
+    private String calculatePotential() {
+        //get recipe for product
+        List<Item> recipe = product.getRecipe();
+        int potentialStock = 100;
+        Component currItem;
+        //if there's no recipe yet - return default string
+        if(recipe.size() == 0)
+            return "No Recipe";
+
+        //loop through each component in the recipe and get the min of all potential stocks
+        for(int i =  0; i < recipe.size(); ++i) {
+            currItem = (Component) recipe.get(i);
+            potentialStock = Math.min(potentialStock, (currItem.getInStockNum()/currItem.getCount()));
+        }
+        return String.valueOf(potentialStock);
     }
 
     @Override
@@ -214,5 +318,22 @@ public class ProductEditMenu extends AppCompatActivity{
             }
 
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //re-calculate and set potential stock number
+        TextView potential = (TextView) findViewById(R.id.potentialStock);
+        potential.setText(calculatePotential());
+        //reset inStock num
+        final TextView itemInStockNumText = (TextView) findViewById(R.id.itemInStockNumText);
+        itemInStockNumText.setText(String.valueOf(product.getInStockNum()));
     }
 }
