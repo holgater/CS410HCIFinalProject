@@ -136,6 +136,13 @@ public class ProductEditMenu extends AppCompatActivity{
                 final TextView inStockNum = (TextView) findViewById(R.id.itemInStockNumText);
                 final TextView potentialNum = (TextView) findViewById(R.id.potentialStock);
 
+                if(calculatePotential().equals("No Recipe")) {
+
+                    displayError("No Recipe", 0, 0);
+
+                } else {
+
+
                 //get prompts.xml view
                 LayoutInflater layoutInflater = LayoutInflater.from(context);
                 View promptView = layoutInflater.inflate(R.layout.prompts, null);
@@ -217,11 +224,12 @@ public class ProductEditMenu extends AppCompatActivity{
                                     }
                                 });
 
-                // create an alert dialog
-                AlertDialog alertD = alertDialogBuilder.create();
+                    // create an alert dialog
+                    AlertDialog alertD = alertDialogBuilder.create();
 
-                alertD.show();
+                    alertD.show();
 
+                }
             }
         });
 
@@ -278,6 +286,11 @@ public class ProductEditMenu extends AppCompatActivity{
         } else if (error.equals("ProcessOverflow")) {
             TextView promptText = (TextView) promptView.findViewById(R.id.promptMessage);
             promptText.setText("Could not process all items - " + valueInOne + " items not processed." + "\n" + valueInTwo + " items succesfully processed");
+
+        } else if (error.equals("No Recipe")) {
+            TextView promptText = (TextView) promptView.findViewById(R.id.promptMessage);
+            promptText.setText("The product must have a recipe before it can be restocked");
+
         }
 
         // setup a dialog window
