@@ -19,7 +19,7 @@ public class ComponentListMenu extends AppCompatActivity {
         setContentView(R.layout.activity_component_list_menu);
         //setup toolbar
         eGridView = (ExpandableGridView) findViewById(R.id.eGridView);
-        eGridView.setAdapter(new GridViewAdapter(this, DataBase.components));
+        eGridView.setAdapter(new GridViewAdapter(this, DataBase.components, ""));
         eGridView.setExpanded(true);
 
         //setup grid items with onClick listener
@@ -55,7 +55,7 @@ public class ComponentListMenu extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 55 && resultCode == RESULT_OK) {
             //Update grid view with new updated List.
-            eGridView.setAdapter(new GridViewAdapter(this, DataBase.components));
+            eGridView.setAdapter(new GridViewAdapter(this, DataBase.components, ""));
         }
     }
     @Override

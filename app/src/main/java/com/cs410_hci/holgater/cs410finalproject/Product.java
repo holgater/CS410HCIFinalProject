@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class Product extends Item implements Serializable {
 
-    private int inStockNum = 0;
     private List<Item> recipe;
 
     //constructor
@@ -32,5 +31,4 @@ public class Product extends Item implements Serializable {
     public void deleteRecipe(int position){
         recipe.remove(position);
     }
-
 }

@@ -1,6 +1,7 @@
 package com.cs410_hci.holgater.cs410finalproject;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import java.io.Serializable;
 
@@ -42,4 +43,5 @@ public class Item implements Serializable{
     public void setInStockNum(int inStockNum) {
         this.inStockNum = inStockNum;
     }
+
 }

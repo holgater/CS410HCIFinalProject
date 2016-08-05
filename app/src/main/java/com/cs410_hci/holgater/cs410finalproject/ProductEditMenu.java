@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -163,7 +164,7 @@ public class ProductEditMenu extends AppCompatActivity {
 
         //Recipe grid
         eGridView = (ExpandableGridView) findViewById(R.id.gridViewCompShow);
-        final GridViewAdapter adapter = new GridViewAdapter(this, product.getRecipe());
+        final GridViewAdapter adapter = new GridViewAdapter(this, product.getRecipe(), "withCount");
         eGridView.setAdapter(adapter);
         eGridView.setExpanded(true);
 
@@ -200,10 +201,14 @@ public class ProductEditMenu extends AppCompatActivity {
             case (GET_COMPONENT) : {
                 if (resultCode == RecipeItemSelect.RESULT_OK) {
                     int position = (int) data.getExtras().get("position");
+                    int count = (int) data.getExtras().get("count");
                     //Add to list inside product for father use
-                    product.addToRecipe(DataBase.components.get(position));
+                    Item item = DataBase.components.get(position);
+                    ((Component)item).setCount(count);
+                    product.addToRecipe(item);
                     //Show product list in
-                    GridViewAdapter adapter = new GridViewAdapter(this, product.getRecipe());
+
+                    GridViewAdapter adapter = new GridViewAdapter(this, product.getRecipe(), "withCount");
                     eGridView.setAdapter(adapter);
                 }
             }

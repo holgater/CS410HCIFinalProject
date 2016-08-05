@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class Component extends Item implements Serializable{
 
     String unitType;
+    private int count = 0;
 
     //constructor
     public Component(String nameIn, Bitmap imageIn, int inStockNumIn, String descriptionIn, String unitTypeIn) {
@@ -25,5 +26,12 @@ public class Component extends Item implements Serializable{
 
     public String getUnit() {
         return unitType;
+    }
+
+    public int getCounts(){
+        return this.count;
+    }
+    public void setCount(int count){
+        this.count = count;
     }
 }

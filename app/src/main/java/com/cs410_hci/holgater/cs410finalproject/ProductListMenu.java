@@ -47,7 +47,7 @@ public class ProductListMenu extends AppCompatActivity {
         setContentView(R.layout.activity_product_list_menu);
 
         //setup toolbar
-        adapter = new GridViewAdapter(this, DataBase.products);
+        adapter = new GridViewAdapter(this, DataBase.products, "");
         eGridView = (ExpandableGridView) findViewById(R.id.eGridView);
         eGridView.setAdapter(adapter);
         eGridView.setExpanded(true);
@@ -85,7 +85,7 @@ public class ProductListMenu extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 55 && resultCode == RESULT_OK) {
             //Update grid view with new updated List.
-            eGridView.setAdapter(new GridViewAdapter(this, DataBase.products));
+            eGridView.setAdapter(new GridViewAdapter(this, DataBase.products, ""));
         }
     }
 
